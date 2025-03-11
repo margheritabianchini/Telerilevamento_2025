@@ -109,3 +109,34 @@ pairs(sentdol)
 plot(sentdol, col=viridis(100))
 plot(sentdol, col=mako(100))
 
+#Layers 
+#1= blue (b2)
+#2= green (b3)
+#3= red (b4)
+#4= NIR (b8)
+
+#NATURAL COLORS (visualizzazione nel visibile)
+im.plotRGB(sentdol, r=3, g=2, b=1)
+
+#FALSE COLORS 
+#aumento di uno e il blu è stato tolto 
+#nella componente red abbiamo messo infrarosso vicino 
+im.plotRGB(sentdol, r=4, g=3, b=2)
+
+#Exercise: plot the image using the NIR ontop of the green component of the RGB scheme 
+im.plotRGB(sentdol, r=2, g=4, b=3)
+pairs(sentdol)
+
+#è uguale
+im.plotRGB(sentdol, r=3, g=4, b=2)
+
+#confronto
+im.multiframe(1, 2)
+im.plotRGB(sentdol, r=2, g=4, b=3)
+im.plotRGB(sentdol, r=3, g=4, b=2)
+
+
+im.plotRGB(sentdol, r=3, g=2, b=4)
+#bianco perchè riflettono molto 
+
+
