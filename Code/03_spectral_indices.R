@@ -118,17 +118,19 @@ ndvi2006auto = im.ndvi (mato2006, 1, 2)
 dev.off ()
 plot(ndvi2006auto)
 
-ndvi
+dvi1992auto = im.ndvi(mato1992, 1, 2)
+dev.off ()
+plot(ndvi1992auto)
 
-
-
-
+dvi1992auto = im.ndvi(mato1992, 1, 2)
+dev.off ()
+plot(ndvi1992auto)
 
 im.multiframe (1,2)
 plot(ndvi1992)
 plot(ndvi1992auto)
 
-
+# google engine 
 # parti chiare è dove non c'è più foresta 
 # ndvi mostrano le dove è deforestato o meno (giallo dove c'è ancora foresta)
 
