@@ -76,5 +76,51 @@ im.ridgeline(gr, scale=2, palette="inferno")
 #in questo modo cambia il colore del grafico 
 
 
+im.ridgeline(gr, scale=3, palette="inferno")
 
+#Exercise: import the NDVI data
+ndvi=im.import("Sentinel2_NDVI")
+#è il gruppo del brenta
+# dato che i nomi sono uguali lui è anadato a sovrascriverli
+
+# Changing names 
+# Sources:    Sentinel2_NDVI_2020-02-21.tif  
+              Sentinel2_NDVI_2020-05-21.tif  
+              Sentinel2_NDVI_2020-08-01.tif  
+              Sentinel2_NDVI_2020-11-27.tif  
+# come rinominare colonne di un dataframe 
+names(ndvi) = c("02_Feb", "05_May", "08_Aug", "11_Nov")
+im.ridgeline(ndvi, scale=2)
+
+# tutte le volte che c'è un problema grafico -> dev.off 
+
+plot(ndvi)
+im.ridgeline(ndvi, scale=2)
+im.ridgeline(ndvi, scale=2, palette="mako")
+
+# avrà valori più bassi dato i valori inferiori di biomassa per il periodo dell'anno
+# aumentano fino a agosto_settembre
+# si torna alla situazione precedente a novembre
+
+
+pairs(ndvi)
+plot(ndvi[[1]], ndvi[[2]])
+# y = x #may y, feb x 
+# y = a + bx 
+# a = 0, b = 1 
+# y = a + bx = 0 + 1x = x
+
+# linea 1 a 1 
+abline(0, 1, col="red")
+
+# mettiamo i dataset con lo stesso range
+plot(ndvi[[1]], ndvi[[2]], xlim=c(-0.3, 0.9), ylim=c(-0.3, 0.9))
+abline(0, 1, col="red")
+
+# se sta sopra i dati sono superiori a maggio rispetto a febbraio
+im.multiframe(1,3)
+plot(ndvi[[1]])
+plot(ndvi[[2]])
+plot(ndvi[[1]], ndvi[[2]], xlim=c(-0.3, 0.9), ylim=c(-0.3, 0.9))
+abline(0, 1, col="red")
 
