@@ -1,10 +1,15 @@
 #R code for performing multitemporal analysis 
 #è analizzata la distribuzione multitemporale dell'NO3 nel tempo
 
+install.packages("ggridges") #this is needed to create ridgeline plots 
 library(imageRy)
 library(terra)
 library(viridis)
+# library(ggridges)
 
+
+
+#Listing the data 
 im.list()
 
 EN_01=im.import("EN_01.png")
@@ -57,3 +62,19 @@ dev.off()
 plot(grdif)
 
 #la parte blu sono più alti valori di temperatura nel 2015
+
+
+#RIDGELINE PLOTS: utile per analizare la distribuzione (es. frequenza)
+im.ridgeline(gr, scale=1)
+# in questo caso è difficile trovare un trend ma sono fluttuazioni
+# prende tutti i pixel e calcola le frequenze dei pixel
+
+# invece di rimanere nella propria parte di grafico va a sovrapporsi a quello successivo
+
+im.ridgeline(gr, scale=2)
+im.ridgeline(gr, scale=2, palette="inferno")
+#in questo modo cambia il colore del grafico 
+
+
+
+
