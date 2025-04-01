@@ -1,7 +1,11 @@
 #R code for classifying images
 
+install.packages("patchwork")
+library(patchwork)
 library(terra)
 library(imageRy)
+library(ggplot2)
+
 
 im.list()
 
@@ -42,11 +46,36 @@ tot2006 = ncell(mato2006c)
 perc2006 = freq(mato2006c) * 100/ tot2006
 
 # human = 54%; forest = 46% 
+#in R le tabelle hanno il nome di dataframe 
+
+#CREATING DATAFRAME
+class = c("Forest", "Human")
+y1992 = c(83,17)
+y2006 = c(45, 55)
+tabout = data.frame(class, y1992, y2006)
 
 
+#bar = istogrammi stat=statistica causale
+p1 = ggplot(tabout, aes(x=class, y=y1992, color=class)) + 
+  geom_bar(stat="identity", fill="white") + 
+  ylim(c(0,100))
 
 
+p2= ggplot(tabout, aes(x=class, y=y2006, color=class)) + 
+  geom_bar(stat="identity", fill="white") + 
+  ylim(c(0,100)) 
 
+#PATCHWORK= serve per unire grafici di ggplot 
+
+p1 + p2
+p1 / p2
+
+#ylim(c(0,100))per mostrare correttamente i dati li posizioniamo sulla stessa scala 
+
+p0 = im.ggplot(mato1992)
+p00 = im.ggplot(mato2006)
+
+p0 + p00 + p1 +p2  
 
 
 
