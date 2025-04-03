@@ -109,6 +109,28 @@ solarcs = subst(solarc, c(1,3,2), c("c1_low","c2_medium","c3_high"))
 #nel vettore c non metto spazi 
 plot(solarcs)
 
+#Exercise: calculate the percentages of the Sun energy classes with one line 
+percsolar = freq(solarcs)$count * 100 / ncell(solarcs)
+# $ = solo
+
+# [1] 37.33349 41.44658 21.21993
+# [1] 38 41 21 
+
+# create dataframe
+class = c("c1_low","c2_medium","c3_high")
+perc = c(38,21,41)
+tabsol = data.frame(class, perc)
+
+#final ggplot
+
+ggplot(tabsol, aes(x=class, y=perc, fill=class, color=class)) + 
+  geom_bar(stat="identity") # + 
+# ylim(c(0,100)) 
+ coord_flip()
+
+
+
+
 
 
 
