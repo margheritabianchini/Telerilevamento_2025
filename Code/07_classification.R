@@ -1,6 +1,6 @@
 #R code for classifying images
 
-install.packages("patchwork")
+#install.packages("patchwork")
 library(patchwork)
 library(terra)
 library(imageRy)
@@ -60,6 +60,7 @@ p1 = ggplot(tabout, aes(x=class, y=y1992, color=class)) +
   geom_bar(stat="identity", fill="white") + 
   ylim(c(0,100))
 
+#mettere fill=class per avere colori personalizzati in funzione alle classi 
 
 p2= ggplot(tabout, aes(x=class, y=y2006, color=class)) + 
   geom_bar(stat="identity", fill="white") + 
@@ -76,6 +77,46 @@ p0 = im.ggplot(mato1992)
 p00 = im.ggplot(mato2006)
 
 p0 + p00 + p1 +p2  
+
+
+#-----Solar orbiter
+#prende dati per quanto riguarda il sole
+#il deposito dati lo troviamo su imageRy 
+#vengono rappresentati i gas del Sole 
+
+im.list()
+solar = im.import("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
+#possiamo inidviduare 3 diversi livelli di energia individuabili 
+
+#Exercise: classify the image in three classes - im.classify()
+solarc=im.classify(solar, num_clusters=3)
+#in questo modo abbiamo i 3 livelli energetici
+
+
+#Exercise: plot the original image beside the classified one 
+dev.off()
+im.multiframe(1,2)
+plot(solar)
+plot(solarc)
+
+# 1 = low
+# 3 = medium
+# 2 = high
+
+#Subst: funzione che serve a sostituire dei valori delle celle (associazione)
+dev.off()
+solarcs = subst(solarc, c(1,3,2), c("c1_low","c2_medium","c3_high"))
+#nel vettore c non metto spazi 
+plot(solarcs)
+
+
+
+
+
+
+
+
+
 
 
 
