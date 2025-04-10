@@ -183,7 +183,13 @@ plot(sd3a, col=mako(100))
 plot(sd3a5, col=mako(100)) 
 plot(sd5a5, col=mako(100)) 
 
-
+# VARIANZA 
+var3 = focal(nir, w=c(3,3), fun=var)
+# oppure var3 = sd3^2 
+sd5 = focal(nir, w=c(5,5), fun="sd")
+var5=sd5^2
+plot(sd5)
+plot(var5)
 
 
 
