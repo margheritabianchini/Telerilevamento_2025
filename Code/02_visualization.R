@@ -1,29 +1,33 @@
-# R code for visualizing satellite data
+#R CODE FOR VISUALIZING SATELLITE DATA 
+#for the whole course we are going to use of = instead of <- for assigning values ​​to variables
 
-#PACCHETTI SEMPRE ALL'INIZIO
-#install.packages("viridis")
-
+#Installing packages
+#always at the beginning of the code 
 library(terra)
 library(imageRy)
 library(viridis)
 
-im.list()
-#Sentinel-2 bands 
-#For the whole course we are going to use of= instead of <-
-#This is based on the following video: 
 
-b2=im.import("sentinel.dolomites.b2.tif")
+#Content of the package 
+im.list()     #[im.list=lists the files contained in the package]
 
 
-cl=colorRampPalette(c("black", "dark grey", "light grey"))(100)
-#questi colori sono tre elementi di un array 
-#all'esterno il numero di gamme tra parentesi 
+#Sentinel-2 bands (spatial resolution = 10m) 
+b2=im.import("sentinel.dolomites.b2.tif")     #[im.import=import of a file]
+                                              #import from the package of the band 2 (blue) 
+                                              #the image represent the mountain group of Tofane (Dolomites) in the blue wave lenght 
+                                              #the yellow part of the image means that it reflects a lot of blue
+
+#Definition of a color array
+cl=colorRampPalette(c("black", "dark grey", "light grey"))(100)     #[colorRampPalette=create a palette with the indicated colors]
+                                                                    #[c=concatenate function that combine three color (elements of an array)]
+                                                                    #[(100)=number of colors]
 plot(b2, col=cl)
 
 cl=colorRampPalette(c("black", "dark grey", "light grey"))(3)
 plot(b2, col=cl)
 
-#Exercise: make your own color ramp
+#EXERCISE: make your own color ramp
 cl=colorRampPalette(c("purple2", "paleturquoise", "violetred1"))(100)
 plot(b2, col=cl)
 
