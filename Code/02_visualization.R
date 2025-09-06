@@ -161,3 +161,4 @@ im.plotRGB(sentdol, r=2, g=4, b=3)
 im.plotRGB(sentdol, r=3, g=4, b=2)
 
 im.plotRGB(sentdol, r=3, g=2, b=4)     #the higher the reflectance of a band, the more dominant it will be in the resulting RGB scheme
+                                       #as in this case the NIR band
