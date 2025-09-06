@@ -13,8 +13,7 @@ im.list()     #[im.list=lists the files contained in the package]
 
 
 #SENTINEL-2 BANDS (spatial resolution = 10m)
-#band 2(blue)
-b2=im.import("sentinel.dolomites.b2.tif")     #[im.import=import of the band]
+b2=im.import("sentinel.dolomites.b2.tif")     #[im.import=import of the blue band]
                                               #the image represent the mountain group of Tofane (Dolomites) in the blue wave lenght 
                                               #the yellow part of the image means that it reflects a lot of blue
 
@@ -34,10 +33,10 @@ cl=colorRampPalette(c("purple2", "paleturquoise", "violetred1"))(100)
 plot(b2, col=cl)
 
 
+#Band 2(blue)
+b2=im.import("sentinel.dolomites.b2.tif")
 #band 3(green) 
 b3=im.import("sentinel.dolomites.b3.tif")
-#band 2(blue)
-b2=im.import("sentinel.dolomites.b2.tif")
 #band 4(red)
 b4=im.import("sentinel.dolomites.b4.tif")
 #band8 (NIR - near infrared)
@@ -100,7 +99,7 @@ sent=c(b2,b3, b4, b8)
 plot(sent, col=cl)
 
 
-#Change of the names  
+#Change of the names
 names(sent)=c("b2blue", "b3green", "b4red", "b8NIR")     #[names=assign names to the elements of a vector]
 sent     #file information (dimensions, resolution, coordinate reference system, ...)
 plot(sent, col=cl)
@@ -113,21 +112,24 @@ plot(sent$b8NIR)     #plotting only the b8NIR inside the sent array
 plot(sent[[4]])      #plotting the fourth element of the array
 
 
+#Several bands altogether 
+sentdol=im.import("sentinel.dolomites")     #replaces everything done before
 
 
+#Scatterplots 
+pairs(sentdol)     #[pairs=produce a matrix of scatterplots]
+                   #diagonal=histograms of the distribution of values ​​for each band
+                   #upper right=Pearson correlation coefficients
+                   #lower left=scatterplots
+                   #the results show that with the NIR the correlation decreases (larger area)
+                   #plants reflects a lot in the NIR band (high values)
+                   #if instead it is absorbed in a band of a color (low values)
 
 
+#Color ramp 
+plot(sentdol, col=viridis(100))     #viridis setting
+plot(sentdol, col=mako(100))     #mako setting  
 
-
-# importing several bands altogether (sostituisce tutto quello fatto prima)
-sentdol=im.import("sentinel.dolomites")     #importing several bands altogether
-                                            #replaces everything done before
-# importing several bands altogether (6 correlazioni)
-pairs(sentdol)
-
-#viridis 
-plot(sentdol, col=viridis(100))
-plot(sentdol, col=mako(100))
 
 #Layers 
 #1= blue (b2)
@@ -135,28 +137,27 @@ plot(sentdol, col=mako(100))
 #3= red (b4)
 #4= NIR (b8)
 
-#NATURAL COLORS (visualizzazione nel visibile)
-im.plotRGB(sentdol, r=3, g=2, b=1)
 
-#FALSE COLORS 
-#aumento di uno e il blu è stato tolto 
-#nella componente red abbiamo messo infrarosso vicino 
-im.plotRGB(sentdol, r=4, g=3, b=2)
+#Natural colors 
+im.plotRGB(sentdol, r=3, g=2, b=1)     #[im.plotRGB=combines three bands into one RGB image]
+                                       #visible visualization
 
-#Exercise: plot the image using the NIR ontop of the green component of the RGB scheme 
+
+#False colors 
+im.plotRGB(sentdol, r=4, g=3, b=2)     #adding one on the components of the RGB scheme
+                                       #exclusion of the blue band                           
+                                       #the NIR band is present in the red component
+
+
+#EXERCISE: plot the image using the NIR ontop of the green component of the RGB scheme 
 im.plotRGB(sentdol, r=2, g=4, b=3)
 pairs(sentdol)
 
-#è uguale
-im.plotRGB(sentdol, r=3, g=4, b=2)
+im.plotRGB(sentdol, r=3, g=4, b=2)     #same result
 
-#confronto
+#Comparison of the two plotRGB 
 im.multiframe(1, 2)
 im.plotRGB(sentdol, r=2, g=4, b=3)
 im.plotRGB(sentdol, r=3, g=4, b=2)
 
-
-im.plotRGB(sentdol, r=3, g=2, b=4)
-#bianco perchè riflettono molto 
-
-
+im.plotRGB(sentdol, r=3, g=2, b=4)     #the higher the reflectance of a band, the more dominant it will be in the resulting RGB scheme
