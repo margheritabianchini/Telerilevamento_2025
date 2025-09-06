@@ -1,7 +1,7 @@
 #R CODE FOR VISUALIZING SATELLITE DATA 
 #for the whole course we are going to use of = instead of <- for assigning values ​​to variables
 
-#Installing packages
+#Packages
 #always at the beginning of the code 
 library(terra)
 library(imageRy)
@@ -12,13 +12,14 @@ library(viridis)
 im.list()     #[im.list=lists the files contained in the package]
 
 
-#Sentinel-2 bands (spatial resolution = 10m) 
-b2=im.import("sentinel.dolomites.b2.tif")     #[im.import=import of a file]
-                                              #import from the package of the band 2 (blue) 
+#SENTINEL-2 BANDS (spatial resolution = 10m)
+#band 2(blue)
+b2=im.import("sentinel.dolomites.b2.tif")     #[im.import=import of the band]
                                               #the image represent the mountain group of Tofane (Dolomites) in the blue wave lenght 
                                               #the yellow part of the image means that it reflects a lot of blue
 
-#Definition of a color array
+
+#Color array
 cl=colorRampPalette(c("black", "dark grey", "light grey"))(100)     #[colorRampPalette=create a palette with the indicated colors]
                                                                     #[c=concatenate function that combine three color (elements of an array)]
                                                                     #[(100)=number of colors]
@@ -27,58 +28,63 @@ plot(b2, col=cl)
 cl=colorRampPalette(c("black", "dark grey", "light grey"))(3)
 plot(b2, col=cl)
 
+
 #EXERCISE: make your own color ramp
 cl=colorRampPalette(c("purple2", "paleturquoise", "violetred1"))(100)
 plot(b2, col=cl)
 
 
-#band 3:verde 
+#band 3(green) 
 b3=im.import("sentinel.dolomites.b3.tif")
-#band 2:blu
+#band 2(blue)
 b2=im.import("sentinel.dolomites.b2.tif")
-#band4: rosso
+#band 4(red)
 b4=im.import("sentinel.dolomites.b4.tif")
-#band8: infrarosso vicino 
+#band8 (NIR - near infrared)
 b8=im.import("sentinel.dolomites.b8.tif")
 
 
-par(mfrow=c(1,4))
-b2=im.import("sentinel.dolomites.b2.tif")
+#Bands on an array 
+par(mfrow=c(1,4))     #[par=set the graphical parameters]
+                      #[mfrow=create an array of images]
+                      #array of 1 row and 4 columns
+b2=im.import("sentinel.dolomites.b2.tif")    #list of images to represent
 b3=im.import("sentinel.dolomites.b3.tif")
 b4=im.import("sentinel.dolomites.b4.tif")
 b8=im.import("sentinel.dolomites.b8.tif")
-#c perchè 1 e 4 sono elementi di un vettore 
 
+#or in another way
 par(mfrow=c(1,4))
-plot(b2)
+plot(b2)     #list of plot to represent
 plot(b3)
 plot(b4)
 plot(b8)
 
-dev.off()
+dev.off()     #[dev.off=closing the device]
 
-#MULTIFRAME
-im.multiframe(1,4)
-plot(b2)
+
+#Multiframe
+im.multiframe(1,4)     #[im.multiframe=create a plot with different plot inside]
+plot(b2)               #plot to represent 
 plot(b3)
 plot(b4)
 plot(b8)
 
-#Exercise: plot the bands using im.multiframe() one on top of the other 
+#EXERCISE: plot the bands using im.multiframe() one on top of the other 
 im.multiframe(4,1)
 plot(b2)
 plot(b3)
 plot(b4)
 plot(b8)
 
-#riquadro
+#Box
 im.multiframe(2,2)
 plot(b2)
 plot(b3)
 plot(b4)
 plot(b8)
 
-#COLOR RAMP PALETTE
+#Color ramp palette 
 cl=colorRampPalette(c("black", "light grey"))(100)
 plot(b2, col=cl)
 plot(b3, col=cl)
