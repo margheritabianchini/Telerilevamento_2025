@@ -19,7 +19,7 @@ plot (luca, filippo, pch=19, col="blue", cex=2, xlab="rubbish", ylab="biomass") 
 #CRAN
 
 install.packages("terra")     #installation of the package 
-library(terra)     #
+library(terra)     #package loading 
 
 install.packages("devtools")
 library(devtools) 
