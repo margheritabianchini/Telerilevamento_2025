@@ -70,12 +70,14 @@ plot(b3)
 plot(b4)
 plot(b8)
 
+
 #EXERCISE: plot the bands using im.multiframe() one on top of the other 
 im.multiframe(4,1)
 plot(b2)
 plot(b3)
 plot(b4)
 plot(b8)
+
 
 #Box
 im.multiframe(2,2)
@@ -84,6 +86,7 @@ plot(b3)
 plot(b4)
 plot(b8)
 
+
 #Color ramp palette 
 cl=colorRampPalette(c("black", "light grey"))(100)
 plot(b2, col=cl)
@@ -91,27 +94,34 @@ plot(b3, col=cl)
 plot(b4, col=cl)
 plot(b8, col=cl)
 
-#stack
+
+#Stack
 sent=c(b2,b3, b4, b8)
 plot(sent, col=cl)
 
-#cambio nomi 
-names(sent)=c("b2blue", "b3green", "b4red", "b8NIR")
-sent
 
+#Change of the names  
+names(sent)=c("b2blue", "b3green", "b4red", "b8NIR")     #[names=assign names to the elements of a vector]
+sent     #file information (dimensions, resolution, coordinate reference system, ...)
 plot(sent, col=cl)
 plot(sent) 
-
-names(sent)=c("b2blue", "b3green", "b4red", "b8NIR")
 dev.off()
-plot(sent$b8NIR)
 
-#plottare il quarto elemento di sent
-plot(sent[[4]])
+
+#Plot of a single image from an array of images 
+plot(sent$b8NIR)     #plotting only the b8NIR inside the sent array 
+plot(sent[[4]])      #plotting the fourth element of the array
+
+
+
+
+
+
+
 
 # importing several bands altogether (sostituisce tutto quello fatto prima)
-sentdol=im.import("sentinel.dolomites")
-
+sentdol=im.import("sentinel.dolomites")     #importing several bands altogether
+                                            #replaces everything done before
 # importing several bands altogether (6 correlazioni)
 pairs(sentdol)
 
