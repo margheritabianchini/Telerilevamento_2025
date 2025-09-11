@@ -43,7 +43,7 @@ b4=im.import("sentinel.dolomites.b4.tif")
 b8=im.import("sentinel.dolomites.b8.tif")
 
 
-#Bands on an array 
+#⛓️ Bands on an array ---------------------------------------------------------------------------------------------------------------------------------------------
 par(mfrow=c(1,4))     #[par=set the graphical parameters]
                       #[mfrow=create an array of images]
                       #array of 1 row and 4 columns
