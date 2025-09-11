@@ -140,18 +140,22 @@ plot(sentdol, col=mako(100))     #mako setting
 
 #Natural colors 
 im.plotRGB(sentdol, r=3, g=2, b=1)     #[im.plotRGB=combines three bands into one RGB image]
-                                       #visible visualization
+                                       #visible visualization: in the visible we can use three bands at a time
 
 
 #False colors 
 im.plotRGB(sentdol, r=4, g=3, b=2)     #adding one on the components of the RGB scheme
                                        #exclusion of the blue band                           
                                        #the NIR band is present in the red component
+                                       #plants reflect a lot the NIR
+                                       #the NIR is reflected as much by healthy plants
+
 
 
 #EXERCISE: plot the image using the NIR ontop of the green component of the RGB scheme 
 im.plotRGB(sentdol, r=2, g=4, b=3)
-pairs(sentdol)
+pairs(sentdol)                         #the correlation between blue, green, and red is strong
+                                       #while with NIR the variation is evident
 
 im.plotRGB(sentdol, r=3, g=4, b=2)     #same result
 
