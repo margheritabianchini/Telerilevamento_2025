@@ -131,7 +131,7 @@ plot(sentdol, col=viridis(100))     #viridis setting
 plot(sentdol, col=mako(100))     #mako setting  
 
 
-#Layers 
+#Layers (bands)
 #1= blue (b2)
 #2= green (b3)
 #3= red (b4)
