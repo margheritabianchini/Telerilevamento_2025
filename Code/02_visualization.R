@@ -18,7 +18,7 @@ b2=im.import("sentinel.dolomites.b2.tif")     #[im.import=import of the blue ban
                                               #the yellow part of the image means that it reflects a lot of blue
 
 
-#Color array
+#🎨 Color array ------------------------------------------------------------------------------------------------------------------------------------------------
 cl=colorRampPalette(c("black", "dark grey", "light grey"))(100)     #[colorRampPalette=create a palette with the indicated colors]
                                                                     #[c=concatenate function that combine three color (elements of an array)]
                                                                     #[(100)=number of colors]
@@ -62,7 +62,7 @@ plot(b8)
 dev.off()     #[dev.off=closing the device]
 
 
-#Multiframe
+#🖼️ Multiframe --------------------------------------------------------------------------------------------------------------------------------------------------
 im.multiframe(1,4)     #[im.multiframe=create a plot with different plot inside]
 plot(b2)               #plot to represent 
 plot(b3)
@@ -116,7 +116,7 @@ plot(sent[[4]])      #plotting the fourth element of the array
 sentdol=im.import("sentinel.dolomites")     #replaces everything done before
 
 
-#Scatterplots 
+#📈 Scatterplots -------------------------------------------------------------------------------------------------------------------------------------------------
 pairs(sentdol)     #[pairs=produce a matrix of scatterplots]
                    #diagonal=histograms of the distribution of values ​​for each band
                    #upper right=Pearson correlation coefficients
@@ -138,18 +138,17 @@ plot(sentdol, col=mako(100))     #mako setting
 #4= NIR (b8)
 
 
-#Natural colors 
+#🌈 Natural colors -----------------------------------------------------------------------------------------------------------------------------------------------
 im.plotRGB(sentdol, r=3, g=2, b=1)     #[im.plotRGB=combines three bands into one RGB image]
                                        #visible visualization: in the visible we can use three bands at a time
 
 
-#False colors 
+#👻 False colors -------------------------------------------------------------------------------------------------------------------------------------------------
 im.plotRGB(sentdol, r=4, g=3, b=2)     #adding one on the components of the RGB scheme
                                        #exclusion of the blue band                           
                                        #the NIR band is present in the red component
                                        #plants reflect a lot the NIR
                                        #the NIR is reflected as much by healthy plants
-
 
 
 #EXERCISE: plot the image using the NIR ontop of the green component of the RGB scheme 
