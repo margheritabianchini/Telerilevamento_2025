@@ -67,6 +67,15 @@ plot(mato2006[[1]], col=inferno(100))     #[[1]] = plot only the first layer of 
 dvi1992= mato1992[[1]] - mato1992[[2]]     #difference NIR - red
 plot(dvi1992)                              #calculated difference plot
 
+
+
+
+
+
+
+
+
+
 #range DVI 
 #maximum: NIR - red = 255 - 0 = 255
 #minimum: NIR - red = 0 - 255 = -255
