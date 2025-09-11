@@ -1,58 +1,75 @@
-#Code to calculate spectral indices from satellite images 
+#CODE TO CALCULTATE SPECTRAL INDICES FROM SATELLITE IMAGES 
 
+
+#Packages 
 library(imageRy) # beloved package developed at unibo
 library(terra)
 library(viridis)
 
+
+#Content of the package 
 im.list()
 
+
+#MATO GROSSO 1992 ------------------------------------------------------------------------------------------------------------------------------------------------
 mato1992 = im.import("matogrosso_l5_1992219_lrg.jpg")
-mato1992 = flip(mato1992)
-#1= NIR
+mato1992 = flip(mato1992)     #[flip=flips the object]
+
+
+#Layers (bands) 
+#1= NIR                  
 #2 = red
-#3 = green 
-
-#per vedere meglio la differenziazione tra gli oggetti 
-im.plotRGB(mato1992, r=1, g=2, b=3) 
-
-#componente green
-im.plotRGB(mato1992, r=2, g=1, b=3) 
-
-#il NIR va sul blu
-#si vede bene la differenza tra suolo nudo e resto (suolo nudo giallo)
-im.plotRGB(mato1992, r=2, g=3, b=1) 
+#3 = green
+#the order of the layers depends on how it was created
+#this order was set manually
 
 
-#Import the 2006 image of the Mato Grosso area 
+im.plotRGB(mato1992, r=1, g=2, b=3)     #to better see the differentiation of objects
+                                        #the flipped image will be displayed only after the plot
+
+
+im.plotRGB(mato1992, r=2, g=1, b=3)     #green component
+
+
+im.plotRGB(mato1992, r=2, g=3, b=1)     #NIR on the blue band 
+                                        #the difference between the bare soil and the rest of the elements is clear (yellow bare soil)
+
+
+#MATO GROSSO 2006 -------------------------------------------------------------------------------------------------------------------------------------------------
 mato2006= im.import("matogrosso_ast_2006209_lrg.jpg")
 mato2006=flip(mato2006)
 plot(mato2006)
 
+
+#🖼️ Multiframe 
 im.multiframe(1, 2)
-im.plotRGB(mato1992, r=2, g=3, b=1, title="Matogrosso 1992")
-im.plotRGB(mato2006, r=2, g=3, b=1, title="Matogrosso 2006")
-
-#radiometric resolution 
-plot(mato1992[[1]], col=inferno(100))
-plot(mato2006[[1]], col=inferno(100))
-
-#DVI
-#vegetazione in salute avrà riflettanza max 
-#in rosso assorbe per fare fotosintesi 
-#se non in salute le cellule a palizzata collassano quindi non assorbirà più come quando sta bene 
-#Tree: NIR=255, red=0, DVI=NIR-red=255
-#Stressed tree: NIR=100, red=20, DIV=NIR-red=80
+im.plotRGB(mato1992, r=2, g=3, b=1, title="Matogrosso 1992")     #[title=allows the insertion of a title above the plot]
+im.plotRGB(mato2006, r=2, g=3, b=1, title="Matogrosso 2006")     #on the left the water is not black because there are a lot of dissolved solids
 
 
+#Radiometric resolution 
+plot(mato1992[[1]], col=inferno(100))     #[[1]] = plot only the first layer of mato1992, so only the NIR band
+plot(mato2006[[1]], col=inferno(100))     #[[1]] = plot only the first layer of mato1992, so only the NIR band
+
+
+#DVI (Difference Vegetation Index) ---------------------------------------------------------------------------------------------------------------------------------
+#healthy vegetation    -> maximum reflectance of NIR 
+                       -> minimum reflectance of red (it is absorbed to carry out photosynthesis)
+#🌳TREE: NIR=255, red=0, DVI=NIR-red=255
+
+#stressed vegetation   -> highest red reflectance (the palisade cells collapse so it will not absorb as much as when it is healthy)
+#🌳💀STRESSED TREE: NIR=100, red=20, DIV=NIR-red=80
+
+#Layers (bands)
 #1 = NIR 
 #2 = red 
 
-dvi1992= mato1992[[1]] - mato1992[[2]] #NIR - red
-plot(dvi1992)
+dvi1992= mato1992[[1]] - mato1992[[2]]     #difference NIR - red
+plot(dvi1992)                              #calculated difference plot
 
-# range DVI 
-# maximum: NIR - red = 255 - 0 = 255
-# minimum: NIR - red = 0 - 255 = -255
+#range DVI 
+#maximum: NIR - red = 255 - 0 = 255
+#minimum: NIR - red = 0 - 255 = -255
 
 plot(dvi1992, col=inferno(100)) 
 
