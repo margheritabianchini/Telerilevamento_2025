@@ -61,7 +61,7 @@ mean(c(24,26,25,49))
 im.list()
 
 
-#🛰️SENTINEL-2 BANDS (spatial resolution = 10m)
+#🛰️SENTINEL-2 (spatial resolution = 10m)
 sent = im.import("sentinel.png")
 sent=flip(sent)
 
