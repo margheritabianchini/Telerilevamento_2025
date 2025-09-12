@@ -57,8 +57,6 @@ mean(c(24,26,25,49))
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 #Content of the package 
 im.list()
 
@@ -90,8 +88,6 @@ im.plotRGB(sent, r=3, g=2, b=1)
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 nir = sent[[1]]
 
 
@@ -127,84 +123,112 @@ plot(sd3)
 plot(sd5)
 
 
-# Exercise: use ggplot to plot the standard deviation
-# funzione pensata per plottare delle singole bande 
+#EXERCISE: use ggplot to plot the standard deviation
+#function to plot individual bands
 im.ggplot(sd3)
 
-# Exercise: plot the two sd maps (3 or 5) one beside the other with ggplot 
+
+#🖼️ Multiframe: difference between plot and ggplot
+dev.off()
+plot(sd3)
+im.ggplot(sd3)
+
+
+#EXERCISE: plot the two sd maps (3 or 5) one beside the other with ggplot 
 p1 = im.ggplot(sd3)
 p2 = im.ggplot(sd5)
+p1 + p2     #the graphs are side by side
 
-p1 + p2
 
-
-# Plot the original nir and the standard deviations 
+#Plot of the original NIR and the standard deviations 
 p3=im.ggplot(nir)
-p3+p1
+p3 + p1     #the graphs are side by side
 
 
-# What to do in case of huge images 
-# RICAMPIONAMENTO - riduzione della risoluzione spaziale 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#What to do in case of huge images 
+#RESAMPLE - reduction of spatial resolution
 
+
+#Content of the package 
 im.list()
+
+
+#🛰️SENTINEL-2 BANDS (spatial resolution = 10m)
 sent = im.import("sentinel.png")
 sent = flip(sent)
 plot(sent)
 
-# numero di pixel totali
-ncell(sent) * nlyr(sent)
-# 794 * 798
-# 2534448
 
-# ricampionamento
-senta = aggregate(sent, fact=2)
-# la risoluzione passa 2 * 2 perchè moltiplico per 2 ogni lato del quadrato che rappresenta il pixel 
-# il pixel iniziale è 1/4 di quello in uscita 
+#Total number of pixels 
+ncell(sent) * nlyr(sent)     #[ncell=total number of pixels]
+                             #[nlyr=number of layers (bands)]
+#633612 * 4
+#2534448
+
+
+#Resample ---------------------------------------------------------------------------------------------------------------------------------------------------------
+#Resampling means reducing by the square
+senta = aggregate(sent, fact=2)     #[aggregate=reduce the spatial resolution]
+                                    #[fact= scale factor]
+                                    #the resolution is 2 * 2 because I multiply by 2 each side of the square that represents the pixel
+                                    #the initial pixel is 1/4 of the output pixel
+                                    #larger area -> lower resolution 
 ncell(senta) * nlyr(senta)
-# dividendoli otteniamo 4 
-# perchè lo abbiamo ridotto di 4 volte 
+#633612
+#dividing them we get 4, because we reduced it 4 times [fact=2]
+
 
 senta5 = aggregate(sent, fact=5)
 ncell(senta5) * nlyr(senta5)
+#101760
 
-# nel momento in cui si ricampiona significa ridurre del quadrato
 
-#CALCOLO DEVIAZIONE STANDARD 
+#Standard deviation -----------------------------------------------------------------------------------------------------------------------------------------------
 nira = senta [[1]]
-sd3a = focal(nira, w=c(3,3), fun=sd)
+sd3a = focal(nira, w=c(3,3), fun=sd)     #standard deviation on a 3x3 matrix 
 
-# Exercise: make a multiframe and plot in RGB the three images (or, 2, 5)
+#EXERCISE: make a multiframe and plot in RGB the three images (or 2, 5)
 im.multiframe(1,3)
 im.plotRGB(sent, r=1, g=2, b=3)
 im.plotRGB(senta, r=1, g=2, b=3)
 im.plotRGB(senta5, r=1, g=2, b=3)
+#the effect of resampling is evident
+#with a factor of 5 the image detail is lost
+#but the highest resolution is not always better than the lowest one
+#ex. a high resolution image may create more noise
 
-# si vede che con fattore 5 si perde il dettaglio dell'immagine 
-# non sempre la risoluzione max è meglio di quella più bassa 
-# es. immagine ad alta risoluzione può creare più rumore
 
 nira = senta [[1]]
 sd3a = focal(nira, w=c(3,3), fun=sd)
 plot(sd3a)
 
-# Exercise: calculate the standard deviation for the factor 5 image 
+
+#EXERCISE: calculate the standard deviation for the factor 5 image 
 nira5 = senta5 [[1]]
-sd3a5 = focal(nira5, w=c(3,3), fun=sd)
+sd3a5 = focal(nira5, w=c(3,3), fun=sd)     #standard deviation on a 3x3 matrix 
 plot(sd3a5)
+
 
 sd5a5 = focal(nira5, w=c(5,5), fun=sd)
 plot(sd5a5)
 
+
+#🖼️ Multiframe 
 im.multiframe(1,2)
 plot(sd5a5)
 plot(sd3a)
 
+
+#🖼️ Multiframe 
 im.multiframe(2,2)
 plot(sd3)
-plot(sd3a) # fattore ric 2
-plot(sd3a5) # fattore ric 5
-plot(sd5a5) # fattore ric 5 e finestra mobile 5*5
+plot(sd3a)      #resampling factor 2
+plot(sd3a5)     #resampling factor 5 
+plot(sd5a5)     #resampling factor 5 and 5*5 mobile window
 
+
+#Plot of the standard deviation 
 p1 = im.ggplot(sd3)
 p2 = im.ggplot(sd3a)
 p3 = im.ggplot(sd3a5)
@@ -212,20 +236,21 @@ p4 = im.ggplot(sd5a5)
 
 p1 + p2 + p3 + p4 
 
+
+#🖼️ Multiframe with a color ramp setting 
 im.multiframe(2,2)
 plot(sd3, col=mako(100))
 plot(sd3a, col=mako(100)) 
 plot(sd3a5, col=mako(100)) 
 plot(sd5a5, col=mako(100)) 
 
-# VARIANZA 
-var3 = focal(nir, w=c(3,3), fun=var)
-# oppure var3 = sd3^2 
-sd5 = focal(nir, w=c(5,5), fun="sd")
-var5=sd5^2
-plot(sd5)
-plot(var5)
+
+#Variance ---------------------------------------------------------------------------------------------------------------------------------------------------------
+var3 = focal(nir, w=c(3,3), fun=var)    #variance
+#or var3 = sd3^2 
 
 
-
-
+sd5 = focal(nir, w=c(5,5), fun="sd")    #standard deviation 
+var5=sd5^2                              #variance 
+plot(sd5)     #plot of the standard deviation 
+plot(var5)    #plot of the variance 
