@@ -93,76 +93,76 @@ p2= ggplot(tabout, aes(x=class, y=y2006, color=class)) +
 
 #Patchwork package ------------------------------------------------------------------------------------------------------------------------------------------------
 #merge ggplot graphs
-p1 + p2     
-p1 / p2
+p1 + p2     #the graphs are side by side
+p1 / p2     #the graphs are one above the other
 
 
-p0 = im.ggplot(mato1992)
+p0 = im.ggplot(mato1992)    #[im.ggplot=converts the raster into a data frame]
 p00 = im.ggplot(mato2006)
 
-p0 + p00 + p1 +p2  
+
+p0 + p00 + p1 +p2
+
+#☀️ SOLAR ORBITER -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#the data repository is on imageRy
+#Solar gas data are represented
 
 
-#-----Solar orbiter
-#prende dati per quanto riguarda il sole
-#il deposito dati lo troviamo su imageRy 
-#vengono rappresentati i gas del Sole 
-
+#Content of the package 
 im.list()
-solar = im.import("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
-#possiamo inidviduare 3 diversi livelli di energia individuabili 
 
-#Exercise: classify the image in three classes - im.classify()
+
+solar = im.import("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")    #identification of three energy levels
+
+
+#EXERCISE: classify the image in three classes
 solarc=im.classify(solar, num_clusters=3)
-#in questo modo abbiamo i 3 livelli energetici
+#classification into three energy levels
 
 
-#Exercise: plot the original image beside the classified one 
+#EXERCISE: plot the original image beside the classified one
+#🖼️ Multiframe 
 dev.off()
 im.multiframe(1,2)
 plot(solar)
 plot(solarc)
 
+
+#Classes 
 # 1 = low
+# 2 = medium 
+# 3 = high 
+
+
+
 # 3 = medium
 # 2 = high
 
-#Subst: funzione che serve a sostituire dei valori delle celle (associazione)
+
+#Substitution: funzione che serve a sostituire dei valori delle celle (associazione)
 dev.off()
-solarcs = subst(solarc, c(1,3,2), c("c1_low","c2_medium","c3_high"))
-#nel vettore c non metto spazi 
+solarcs = subst(solarc, c(3,2,1), c("c1_low","c2_medium","c3_high"))     #[subst=replaces cell values (combination)]
+                                                                         #there must be no spaces in the vector c
 plot(solarcs)
 
-#Exercise: calculate the percentages of the Sun energy classes with one line 
+
+#EXERCISE: calculate the percentages of the Sun energy classes with one line 
 percsolar = freq(solarcs)$count * 100 / ncell(solarcs)
-# $ = solo
+# $ = only
 
-# [1] 37.33349 41.44658 21.21993
-# [1] 38 41 21 
 
-# create dataframe
+# percsolar -> [1] 37.33349 41.44658 21.21993
+# approximate percsolar -> [1] 38 41 21 
+
+
+#Create dataframe 
 class = c("c1_low","c2_medium","c3_high")
-perc = c(38,21,41)
+perc = c(21,38,41)
 tabsol = data.frame(class, perc)
 
-#final ggplot
 
+#Final ggplot
 ggplot(tabsol, aes(x=class, y=perc, fill=class, color=class)) + 
   geom_bar(stat="identity") # + 
 # ylim(c(0,100)) 
  coord_flip()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
