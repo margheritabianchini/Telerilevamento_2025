@@ -1,24 +1,27 @@
-# Code to build your own functions 
+#CODE TO  BUILD YOUR OWN FUNCTIONS 
 
-# x e y sono i due numeri che l'utente scriverà 
+
+#x and y are the two numbers that the user will write
 somma <- function(x,y) {
   z=x+y
   return(z)
   }
 
-# Exercise: make a new function called differenza
+
+#EXERCISE: make a new function called differenza
 differenza <- function(x,y) {
   z=x-y
   return(z)
   }
 
-mf <- function(nrow,ncol) {
-  par(mfrow=c(nrow, ncol))
-  }
 
-mf(1,2) 
+mf <- function(nrow,ncol) {     
+  par(mfrow=c(nrow, ncol))    #[par=set the graphic parameters]
+  }
+mf(1,2)
 plot(sent[[1]])
 plot(sentpca[[1]])
+
 
 positivo <- function(x) {
   if(x>0) {
@@ -30,7 +33,3 @@ positivo <- function(x) {
   else {
     print("Lo zero è zero.")}
 }
-
-
-
-
