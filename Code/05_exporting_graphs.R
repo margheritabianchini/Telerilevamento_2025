@@ -1,30 +1,33 @@
-# This code helps exporting graphs to images 
+#R CODE TO HELP EXPORT GRAPHS TO IMAGE
 
-#Exporting data 
-#selezionare la cartella di lavoro
-setwd("C://Users/margh/Desktop/GEOLOGIA E TERRITORIO (LM-74)/TELERILEVAMENTO")
 
-getwd()
+#Exporting data -----------------------------------------------------------------------------------------------------------------------------------------------------
+setwd("C://Users/margh/Desktop/GEOLOGIA E TERRITORIO (LM-74)/TELERILEVAMENTO")     #[setwd=select the working directory]
+#For Mac(Apple) setwd("/Users/margh/Desktop/GEOLOGIA E TERRITORIO (LM-74)/TELERILEVAMENTO")
+getwd()     #[getwd=returns the current working directory]
 
 plot(gr)
 
-#con png creiamo un file png 
-png("greenland_output.png")
-plot(gr) 
-dev.off()
-#con dev.off chiudiamo tutto 
 
-#oltre al png si possono fare altri formati di file 
-pdf("greenland_output.pdf")
+#🌄 png file 
+png("greenland_output.png")     #[png=create a png file]
 plot(gr) 
 dev.off()
 
 
+#📄pdf file 
+pdf("greenland_output.pdf")     #[pdf=create a pdf file]
+plot(gr) 
+dev.off()
+
+
+#📄pdf file 
 pdf("difgreen.pdf")
 plot(grdif)
 dev.off()
+#there is no image resolution problem because it is a vector file
 
-#nel pdf non ho problemi di risoluzione dei numeri perchè è un vettoriale
-jpeg("difgreen.jpeg")
+#🌄 jpeg file 
+jpeg("difgreen.jpeg")     #[jpeg=create a jpeg file]
 plot(grdif)
 dev.off()
