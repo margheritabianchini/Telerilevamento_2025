@@ -134,7 +134,6 @@ plot(solarc)
 # 3 = high 
 
 
-
 # 3 = medium
 # 2 = high
 
@@ -146,7 +145,7 @@ solarcs = subst(solarc, c(3,2,1), c("c1_low","c2_medium","c3_high"))     #[subst
 plot(solarcs)
 
 
-#EXERCISE: calculate the percentages of the Sun energy classes with one line 
+#EXERCISE: calculate the percentages of the Sun energy classes with one line
 percsolar = freq(solarcs)$count * 100 / ncell(solarcs)
 # $ = only
 
@@ -165,4 +164,4 @@ tabsol = data.frame(class, perc)
 ggplot(tabsol, aes(x=class, y=perc, fill=class, color=class)) + 
   geom_bar(stat="identity") # + 
 # ylim(c(0,100)) 
- coord_flip()
+ coord_flip()     #swap the x-axis with y-axis
