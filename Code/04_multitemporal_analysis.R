@@ -21,6 +21,7 @@ plot(EN_01)
 #RGB image with rainbow colors (wrong colors)
 #higher values -> areas where the vehicular traffic is higher 
 
+
 #MARCH 2020 -------------------------------------------------------------------------------------------------------------------------------------------------------
 EN_13=im.import("EN_13.png")
 EN_13=flip(EN_13)
