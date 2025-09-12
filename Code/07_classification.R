@@ -1,5 +1,7 @@
-#R code for classifying images
+#R CODE FOR CLASSIFYNG IMAGES 
 
+
+#Packages 
 #install.packages("patchwork")
 library(patchwork)
 library(terra)
@@ -7,66 +9,89 @@ library(imageRy)
 library(ggplot2)
 
 
+#Content of the package 
 im.list()
 
+
+#MATO GROSSO 1992 -------------------------------------------------------------------------------------------------------------------------------------------------
 mato1992 = im.import("matogrosso_l5_1992219_lrg.jpg")
 mato1992 = flip(mato1992)
 plot(mato1992)
 
 
+#MATO GROSSO 2006 --------------------------------------------------------------------------------------------------------------------------------------------------
 mato2006 = im.import("matogrosso_ast_2006209_lrg.jpg")
 mato2006 = flip(mato2006)
 plot(mato2006)
 
 
-#CLASSIFY: una delle possibili classificazioni che parte in modo random in funzione alle n classi = clusters indicate 
-
-mato1992c = im.classify(mato1992, num_clusters=2)
-# class 1 = forest 
-# class 2 = human 
+#Classify ----------------------------------------------------------------------------------------------------------------------------------------------------------
+#clustering -> distinguishes based on a spectral/statistical similarity calculated by the algorithm.
+mato1992c = im.classify(mato1992, num_clusters=2)     #[classify=generates a random classification based on the n classes (clusters indicate)]
+                                                      #[num_clusters=number of classes]
+# class 1 = forest
+# class 2 = human
 
 
 mato2006c = im.classify(mato2006, num_clusters=2)
 # class 1 = human
 # class 2 = forest
 
-#un modo per bloccare la classificazione è tramite seed. Perchè indica una delle possibili classificazioni, tramite un gruppo di pixel iniziali
 
-# CALCOLO DELLA FREQUENZA E TOTALE -> quante volte abbiamo un certo valore (pixel)
-f1992 = freq(mato1992c)
-tot1992 = ncell(mato1992c)
-#PROPORZIONI
-prop1992 = f1992 / tot1992 
-#PROPORZIONI IN PERCENTUALE 
-perc1992 = prop1992 * 100
+#[set.seed()=blocks the randomness of the classification. Idicates one of the possible classifications through a group of initial pixels]
 
+
+#Calculation of frequency and total -------------------------------------------------------------------------------------------------------------------------------
+#MATO GROSSO 1992
+f1992 = freq(mato1992c)     #[freq=counts the frequency of pixel values]
+tot1992 = ncell(mato1992c)     #[ncell=count the total number of pixels]
+
+
+#Proportions
+prop1992 = f1992 / tot1992     #frequency/total
+
+
+#Proportions in percentage
+perc1992 = prop1992 * 100     #(frequency/total)*100
 # forest = 83%; human = 17%
 
+
+#MATO GROSSO 2006 
 tot2006 = ncell(mato2006c)
-perc2006 = freq(mato2006c) * 100/ tot2006
-
-# human = 54%; forest = 46% 
-#in R le tabelle hanno il nome di dataframe 
-
-#CREATING DATAFRAME
-class = c("Forest", "Human")
-y1992 = c(83,17)
-y2006 = c(45, 55)
-tabout = data.frame(class, y1992, y2006)
+perc2006 = freq(mato2006c) * 100/ tot2006     #frequency*100/total
+# human = 55%; forest = 45% 
+#r tables are called dataframes
 
 
-#bar = istogrammi stat=statistica causale
-p1 = ggplot(tabout, aes(x=class, y=y1992, color=class)) + 
+#Creating dataframe 
+class = c("Forest", "Human")    #class definition 
+y1992 = c(83,17)     #first column
+y2006 = c(45, 55)     #second column 
+tabout = data.frame(class, y1992, y2006)     #[data.frame=create a column-structured data table]
+
+
+#📊 Histogram ----------------------------------------------------------------------------------------------------------------------------------------------------
+#bar=istogrammi 
+#stat=random statistics
+p1 = ggplot(tabout, aes(x=class, y=y1992, color=class)) +      
   geom_bar(stat="identity", fill="white") + 
   ylim(c(0,100))
+#[ggplot=create a graph]
+#[aes=specify the variables]
+#[geom_bar=create a bar chart]
+#[stat=indicates the statistical transformation of the data]
+#[fill=filling the bars]
+#[ylim= y-axis limit]
 
-#mettere fill=class per avere colori personalizzati in funzione alle classi 
 
 p2= ggplot(tabout, aes(x=class, y=y2006, color=class)) + 
   geom_bar(stat="identity", fill="white") + 
   ylim(c(0,100)) 
+#[fill=class -> to have custom colors for the classes]
 
-#PATCHWORK= serve per unire grafici di ggplot 
+
+#Patchwork package -----------------------------------------------------------------------------------------------------------------------------------------------
+#merge ggplot graphs
 
 p1 + p2
 p1 / p2
