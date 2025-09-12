@@ -12,8 +12,8 @@ library(viridis)
 im.list()     #[im.list=lists the files contained in the package]
 
 
-#SENTINEL-2 BANDS (spatial resolution = 10m)
-#DOLOMITES 
+#🛰️ SENTINEL-2 BANDS (spatial resolution = 10m)
+#⛰️ DOLOMITES 
 b2=im.import("sentinel.dolomites.b2.tif")     #[im.import=import of the blue band]
                                               #the image represent the mountain group of Tofane (Dolomites) in the blue wave lenght 
                                               #the yellow part of the image means that it reflects a lot of blue
