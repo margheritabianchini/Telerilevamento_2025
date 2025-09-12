@@ -88,15 +88,14 @@ p2= ggplot(tabout, aes(x=class, y=y2006, color=class)) +
   geom_bar(stat="identity", fill="white") + 
   ylim(c(0,100)) 
 #[fill=class -> to have custom colors for the classes]
+#ylim(c(0,100)) -> to display the data correctly, we place them on the same scale
 
 
-#Patchwork package -----------------------------------------------------------------------------------------------------------------------------------------------
+#Patchwork package ------------------------------------------------------------------------------------------------------------------------------------------------
 #merge ggplot graphs
-
 p1 + p2
 p1 / p2
 
-#ylim(c(0,100))per mostrare correttamente i dati li posizioniamo sulla stessa scala 
 
 p0 = im.ggplot(mato1992)
 p00 = im.ggplot(mato2006)
