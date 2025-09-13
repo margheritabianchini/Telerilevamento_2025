@@ -11,14 +11,10 @@ library(cblindplot)
 
 # From GitHub:
 # install.packages("dev.tools")
-install_github("clauswilke/colorblindr")
+install_github("clauswilke/colorblindr")     #colorblindness 
 library(colorblindr)
 
 
 # From CRAN: 
 install.packages("colorblindcheck")
 library(colorblindcheck)
-
-
-
-
