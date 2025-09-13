@@ -1,16 +1,22 @@
-# Code to solve colorblindness problems
+#R CODE TO SOLVE COLORBLINDNESS PROBLEMS 
+
 
 # Packages
 library(terra)
 library(imageRy)
 
+
 # Installing cblindplot
 library(devtools)
-install_github("duciororocchini/cblindplot")
+install_github("ducciorocchini/cblindplot")
 library(cblindplot)
 
+
+
 # Importing data
-setwd("~/Desktop")
+setwd(""C://Users/margh/Desktop")     #select the working directory 
+
+
 # https://fb.watch/xfBsEdtO4Z/
 vinicunca = rast("vinicunca.jpg")
 plot(vinicunca)
