@@ -1,5 +1,5 @@
-#APPUNTI
-#pizzo cengalo 
+//APPUNTI
+//pizzo cengalo 
 
 // ==============================================
 // Sentinel-2 Surface Reflectance - Cloud Masking and Visualization
