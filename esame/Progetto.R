@@ -1,6 +1,11 @@
 #PROGETTO TELERILEVAMENTO 2025 
 #FRANA DI PIZZO CENGALO (VAL BONDASCA)
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#📚Richiamo dei pacchetti installati 
+library(terra)
+library(imageRy)
+library(viridis) 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #🛰️Importazione delle immagini satellitari della missione SENTINEL-2 
 #  (risoluzione spaziale = 10 m)
 #  Le immagini sono state scaricate da GEE (Google Earth Engine)
