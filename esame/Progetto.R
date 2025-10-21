@@ -1,16 +1,46 @@
 #PROGETTO TELERILEVAMENTO 2025 
 #FRANA DI PIZZO CENGALO (VAL BONDASCA)
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+______________________________________________________________________________________________________________________________________________________________
 #📚Richiamo dei pacchetti installati 
 library(terra)
 library(imageRy)
 library(viridis) 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+______________________________________________________________________________________________________________________________________________________________
 #🛰️Importazione delle immagini satellitari della missione SENTINEL-2 
-#  (risoluzione spaziale = 10 m)
-#  Le immagini sono state scaricate da GEE (Google Earth Engine)
+# (risoluzione spaziale = 10 m)
+# Le immagini sono state scaricate da GEE (Google Earth Engine)
 
-#Set della working directory 
+# Set della working directory
 setwd("C://Users/margh/Desktop/GEOLOGIA E TERRITORIO (LM-74)/TELERILEVAMENTO/materiale progetto")
 getwd()
-pizzo_cengalo = rast(pizzo_cengalo_2017_08.tif)
+
+# Richiamo dei file 
+pizzo_cengalo_pre = rast("sentinel2_.tif")
+pizzo_cengalo_post = rast("sentinel2_estate2018.tif")
+________________________________________________________________________________________________________________________________________________________________
+#👀Visualizzazione delle immagini 
+
+# Analisi dei file 
+pizzo_cengalo_pre 
+# Layers (bande)
+# 1 = red (b4)
+# 2 = green (b3)
+# 3 = blue (b2)
+# 4 = NIR (b8)
+
+pizzo_cengalo_post 
+# Layers (bande)
+# 1 = red (b4)
+# 2 = green (b3)
+# 3 = blue (b2)
+# 4 = NIR (b8)
+
+#Plot delle due immagini 
+plot(pizzo_cengalo_pre)
+plot(pizzo_cengalo_post)
+
+#Colori naturali
+im.plotRGB(pizzo_cengalo_pre, r=1, g=2, b=3)
+im.plotRGB(pizzo_cengalo_post, r=1, g=2, b=3)
+
+
