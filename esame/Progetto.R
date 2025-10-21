@@ -1,6 +1,5 @@
 #PROGETTO TELERILEVAMENTO 2025 
 #FRANA DI PIZZO CENGALO (VAL BONDASCA)
-
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
 #📚Richiamo dei pacchetti installati
 library(terra)
