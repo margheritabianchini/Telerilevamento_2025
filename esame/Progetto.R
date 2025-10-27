@@ -53,6 +53,7 @@ im.plotRGB(pizzo_cengalo_pre2017, r=1, g=2, b=3)
 im.plotRGB(pizzo_cengalo_2017, r=1, g=2, b=3)
 im.plotRGB(pizzo_cengalo_2018, r=1, g=2, b=3)
 
+
 # Visualizzazione in falsi colori
 # Presentazione della banda dell'infrarosso vicino (NIR - Near InfraRed) sulla componente del rosso
 # piante -> riflettono molto il NIR (valori alti)
