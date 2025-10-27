@@ -2,15 +2,23 @@
 # FRANA DEL PIZZO CENGALO (VAL BONDASCA) - SVIZZERA 
 # L'evento si è verificato il 23.08.2017 coinvolgendo il paese di Boldo situato a valle
 
-# A. ANALISI MULTITEMPORALE DELL'AREA: individuazione dei due eventi principali che hanno interessato l'area
+#METODO DI ANALISI DELLE IMMAGINI TELERILEVATE - COMPRENSIONE DEL FENOMENO DI PIZZO CENGALO PER FUTURI FENOMENI
+
+# A. VISUALIZZAZIONE IMMAGINI: individuazione dei due eventi principali che hanno interessato l'area
 #    1.Landsat: pre 2011, post 2011 (evento 27.12.2011)
 #      Sentinel: 2017, 2018 (evento 23.08.2017)
 #    2.VISUALIZZAZIONE FILE PANORAMICA NORMALE, FALSI COLORI 
 
-# B. CALCOLO DEGLI INDICI SPETTRALI (NDVI, scatter plot (?))
-#    Sentinel: 2017, 2018 (evento 23.08.2017)
+# -> Sentinel: 2017, 2018 (evento 23.08.2017)
 
-# C. 
+# B. CALCOLO DEGLI INDICI SPETTRALI (NDVI, scatterplot (?))
+
+# C. ANALISI MULTITEMPORALE (differenza tra gli anni e ndvi, ridgeline plot, scatterplot)
+
+# D. CLASSIFICAZIONE (calcolo delle percentuali, creazione degli istogrammi)
+
+# E. VARIABILITà SPAZIALE (deviazione standard) e PCA (?)
+
 
 
 
