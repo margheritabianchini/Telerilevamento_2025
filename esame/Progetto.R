@@ -1,6 +1,21 @@
 # PROGETTO TELERILEVAMENTO 2025 
 # FRANA DEL PIZZO CENGALO (VAL BONDASCA) - SVIZZERA 
 # L'evento si è verificato il 23.08.2017 coinvolgendo il paese di Boldo situato a valle
+
+# A. ANALISI MULTITEMPORALE DELL'AREA: individuazione dei due eventi principali che hanno interessato l'area
+#    1.Landsat: pre 2011, post 2011 (evento 27.12.2011)
+#      Sentinel: 2017, 2018 (evento 23.08.2017)
+#    2.VISUALIZZAZIONE FILE PANORAMICA NORMALE, FALSI COLORI 
+
+# B. CALCOLO DEGLI INDICI SPETTRALI (NDVI, scatter plot (?))
+#    Sentinel: 2017, 2018 (evento 23.08.2017)
+
+# C. 
+
+
+
+
+
 #===================================================================================================================================================================
 #📚Richiamo dei pacchetti installati
 library(terra)
