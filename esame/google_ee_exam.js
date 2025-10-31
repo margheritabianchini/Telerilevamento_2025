@@ -320,6 +320,8 @@ Export.image.toDrive({
 // ================================================================================================================================================================
 // 🛰️ CODICE PYTHON - GOOGLE ENGINE - LANDSAT 5 🛰️
 // ================================================================================================================================================================
+// 1. ESPORTAZIONE DELLE IMMAGINI PRE-EVENTO 
+// ================================================================================================================================================================
 // Function to mask clouds using the QA_PIXEL band
 // Bits 10 and 11 correspond to opaque clouds and cirrus
 // ==============================================
@@ -396,4 +398,69 @@ Export.image.toDrive({
 });
 
 
+// ================================================================================================================================================================
+// 2. ESPORTAZIONE DELL'IMMAGINE POST-EVENTO 
+// ================================================================================================================================================================
+function maskL8sr(image) {
+  var qa = image.select('QA_PIXEL');
 
+  var cloudBitMask = 1 << 5;        // cloud
+
+  var mask = qa.bitwiseAnd(cloudBitMask).eq(0)
+
+  // Scale reflectance to 0-1
+  var scaled = image.select(['SR_B2','SR_B3','SR_B4','SR_B5','SR_B6','SR_B7'])
+                    .multiply(0.0000275).add(-0.2);
+
+  return scaled.updateMask(mask);
+}
+
+// ======================
+// LOAD COLLECTION L8 SR
+// ======================
+var collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
+                  .filterBounds(pizzo_cengalo)
+                  .filterDate('2013-05-01', '2013-10-01')
+                  .filter(ee.Filter.lt('CLOUD_COVER', 20))
+                  .map(maskL8sr)
+                  .select(['SR_B2','SR_B3','SR_B4','SR_B5','SR_B6','SR_B7']); 
+
+print('Images:', collection.size());
+
+// ======================
+// MEDIAN COMPOSITE
+// ======================
+var composite = collection.median().clip(pizzo_cengalo);
+
+// ======================
+// VISUALIZATION
+// ======================
+Map.centerObject(pizzo_cengalo, 10);
+
+// RGB
+Map.addLayer(composite, {
+  bands: ['SR_B4', 'SR_B3', 'SR_B2'],  // R,G,B
+  min: 0,
+  max: 0.3
+}, 'L8 RGB');
+
+// CIR/NIR (Vegetation highlight)
+Map.addLayer(composite, {
+  bands: ['SR_B5', 'SR_B4', 'SR_B3'],  // NIR,R,G
+  min: 0,
+  max: 0.4
+}, 'L8 NIR');
+
+// ======================
+// EXPORT
+// ======================
+Export.image.toDrive({
+  image: composite,
+  description: 'Landsat8_Composite_2017',
+  folder: 'GEE_exports',
+  fileNamePrefix: 'Landsat8_2017',
+  region: pizzo_cengalo,
+  scale: 30,
+  crs: 'EPSG:4326',
+  maxPixels: 1e13
+});
