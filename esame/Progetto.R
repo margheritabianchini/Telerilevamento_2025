@@ -36,6 +36,7 @@ getwd()
 # Richiamo dei file 
 #Landsat 5 (evento 27.12.2011)
 pizzo_cengalo_2011 = rast("landsat5_2011.tif")
+pizzo_cengalo_2013 = rast("landsat8_2013.tif")
 #Sentinel-2 (evento 23.08.2017) 
 pizzo_cengalo_primavera2017 = rast("sentinel2_primavera2017.tif")
 pizzo_cengalo_pre2017 = rast("sentinel2_pre_pre_evento.tif")
@@ -63,6 +64,7 @@ pizzo_cengalo_2018
 # Plot delle due immagini 
 # Landsat 5
 plot(pizzo_cengalo_2011)
+plot(pizzo_cengalo_2013)
 # Sentinel-2
 plot(pizzo_cengalo_primavera2017)
 plot(pizzo_cengalo_pre2017)
@@ -74,6 +76,7 @@ plot(pizzo_cengalo_2018)
 # [im.plotRGB = combina le tre bande in una immagine RGB]
 # Landsat 5 
 im.plotRGB(pizzo_cengalo_2011, r=1, g=2, b=3)
+im.plotRGB(pizzo_cengalo_2013, r=3, g=2, b=1)
 # Sentinel-2
 im.plotRGB(pizzo_cengalo_primavera2017, r=1, g=2, b=3)
 im.plotRGB(pizzo_cengalo_pre2017, r=1, g=2, b=3)
