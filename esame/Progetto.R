@@ -72,9 +72,9 @@ plot(pizzo_cengalo_2018)
 # Visualizzazione in colori naturali
 # Corrisponde alla visualizzazione nel visibile
 # [im.plotRGB = combina le tre bande in una immagine RGB]
-#Landsat 5 
+# Landsat 5 
 im.plotRGB(pizzo_cengalo_2011, r=1, g=2, b=3)
-#Sentine-2
+# Sentinel-2
 im.plotRGB(pizzo_cengalo_primavera2017, r=1, g=2, b=3)
 im.plotRGB(pizzo_cengalo_pre2017, r=1, g=2, b=3)
 im.plotRGB(pizzo_cengalo_2017, r=1, g=2, b=3)
@@ -86,12 +86,6 @@ im.plotRGB(pizzo_cengalo_2018, r=1, g=2, b=3)
 # piante -> riflettono molto il NIR (valori alti)
 # roccia 
 im.plotRGB(pizzo_cengalo_2017, r=4, g=3, b=2)
-
-
-
-
-
-
 
 
 
