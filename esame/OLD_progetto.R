@@ -14,17 +14,20 @@ getwd()
 # Richiamo dei file 
 #Landsat 5 (evento 27.12.2011)
 pizzo_cengalo_2011 = rast("L5_2011.tif") 
+pizzo_cengalo_2013 = rast("L8_2013.tif")
 #===================================================================================================================================================================
 #👀Visualizzazione delle immagini 
 
 # Plot delle due immagini 
 # Landsat 5
 plot(pizzo_cengalo_2011)
+plot(pizzo_cengalo_2013)
 
 # Visualizzazione in colori naturali
 # Corrisponde alla visualizzazione nel visibile
 # [im.plotRGB = combina le tre bande in una immagine RGB]
 # Landsat 5 
 im.plotRGB(pizzo_cengalo_2011, r=1, g=2, b=3)
+im.plotRGB(pizzo_cengalo_2013, r=1, g=2, b=3)
 
 
