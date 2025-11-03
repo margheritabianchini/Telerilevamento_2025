@@ -381,7 +381,7 @@ Map.addLayer(collection, {
 
 // Display the median composite image
 Map.addLayer(composite, {
-  bands: ['SR_B4', 'SR_B2', 'SR_B1'],
+  bands: ['SR_B4', 'SR_B2', 'SR_B1'], //False 
   min: 0,
   max: 0.3
 }, 'Median composite');
@@ -410,6 +410,9 @@ Export.image.toDrive({
 // 2. ESPORTAZIONE DELL'IMMAGINE POST-EVENTO
 //    (estate 2013)
 // ================================================================================================================================================================
+// Function to mask clouds using the QA_PIXEL band
+// Bits 10 and 11 correspond to opaque clouds and cirrus
+// ================================================================================================================================================================
 function maskL8sr(image) {
   var qa = image.select('QA_PIXEL');
 
@@ -425,7 +428,7 @@ function maskL8sr(image) {
 }
 
 // ======================
-// LOAD COLLECTION L8 SR
+// Load and Prepare the Image Collection
 // ======================
 var collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
                   .filterBounds(pizzo_cengalo)
@@ -437,31 +440,32 @@ var collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
 print('Images:', collection.size());
 
 // ======================
-// MEDIAN COMPOSITE
+// Create a median composite from the collection
+// Useful when the AOI overlaps multiple scenes or frequent cloud cover
 // ======================
 var composite = collection.median().clip(pizzo_cengalo);
 
 // ======================
-// VISUALIZATION
+// Visualization on the Map
 // ======================
 Map.centerObject(pizzo_cengalo, 10);
 
-// RGB
+// Display the image of the collection (GEE does this by default)
 Map.addLayer(composite, {
   bands: ['SR_B4', 'SR_B3', 'SR_B2'],  // R,G,B
   min: 0,
   max: 0.3
 }, 'L8 RGB');
 
-// CIR/NIR (Vegetation highlight)
+// Display the median composite image
 Map.addLayer(composite, {
-  bands: ['SR_B5', 'SR_B4', 'SR_B3'],  // NIR,R,G
+  bands: ['SR_B5', 'SR_B3', 'SR_B2'],  // NIR,G,B
   min: 0,
   max: 0.4
 }, 'L8 NIR');
 
 // ======================
-// EXPORT
+// Export to Google Drive
 // ======================
 Export.image.toDrive({
   image: composite,
