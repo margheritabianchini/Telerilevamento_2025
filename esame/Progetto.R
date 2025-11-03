@@ -5,8 +5,8 @@
 #METODO DI ANALISI DELLE IMMAGINI TELERILEVATE - COMPRENSIONE DEL FENOMENO DI PIZZO CENGALO PER FUTURI FENOMENI
 
 # A. VISUALIZZAZIONE IMMAGINI: individuazione dei due eventi principali che hanno interessato l'area
-#    1.Landsat: pre 2011, post 2011 (evento 27.12.2011)
-#      Sentinel: 2017, 2018 (evento 23.08.2017)
+#    1.Landsat 5 e Landsat 7: 2011, 2013 (evento 27.12.2011)
+#      Sentinel-2: 2017, 2018 (evento 23.08.2017)
 #    2.VISUALIZZAZIONE FILE PANORAMICA NORMALE, FALSI COLORI 
 
 # -> Sentinel: 2017, 2018 (evento 23.08.2017)
