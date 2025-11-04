@@ -49,7 +49,7 @@ im.plotRGB(mato2006, r=2, g=3, b=1, title="Matogrosso 2006")     #on the left th
 
 #Radiometric resolution 
 plot(mato1992[[1]], col=inferno(100))     #[[1]] = plot only the first layer of mato1992, so only the NIR band
-plot(mato2006[[1]], col=inferno(100))     #[[1]] = plot only the first layer of mato1992, so only the NIR band
+plot(mato2006[[1]], col=inferno(100))     #[[1]] = plot only the first layer of mato2006, so only the NIR band
 
 
 #DVI (Difference Vegetation Index) --------------------------------------------------------------------------------------------------------------------------------
