@@ -54,7 +54,7 @@ plot(mato2006[[1]], col=inferno(100))     #[[1]] = plot only the first layer of 
 
 #DVI (Difference Vegetation Index) --------------------------------------------------------------------------------------------------------------------------------
 #healthy vegetation    -> maximum reflectance of NIR 
-                       -> minimum reflectance of red (it is absorbed to carry out photosynthesis)
+#                      -> minimum reflectance of red (it is absorbed to carry out photosynthesis)
 #🌳TREE: NIR=255, red=0, DVI=NIR-red=255
 
 #stressed vegetation   -> highest red reflectance (the palisade cells collapse so it will not absorb as much as when it is healthy)
