@@ -188,7 +188,7 @@ function maskS2clouds(image) {
 // Load Sentinel-2 SR Harmonized collection (atmospherical correction already done)
 var collection = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
                    .filterBounds(pizzo_cengalo)
-                   .filterDate('2013-06-23', '2013-08-23')     // Filter by date                                   // Filter by AOI
+                   .filterDate('2017-06-23', '2017-08-23')     // Filter by date                                   // Filter by AOI
                    .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20)) // Only images with <20% cloud cover
                    .map(maskS2clouds) //Apply cloud masking 
                    .select(['B2', 'B3', 'B4', 'B8']);                                  // Apply cloud masking
