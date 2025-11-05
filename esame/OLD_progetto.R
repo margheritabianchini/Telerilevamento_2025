@@ -1,3 +1,5 @@
+# LANDSAT (anno 2011, 2013), SENTINEL-2 (primavera 2017, primavera-estate 2017, estate ore evento 2017, estate 2018)
+#===================================================================================================================================================================
 #📚Richiamo dei pacchetti installati
 library(terra)
 library(imageRy)
@@ -12,22 +14,69 @@ setwd("C://Users/margh/Desktop/GEOLOGIA E TERRITORIO (LM-74)/TELERILEVAMENTO/mat
 getwd()
 
 # Richiamo dei file 
-#Landsat 5 (evento 27.12.2011)
-pizzo_cengalo_2011 = rast("L5_2011.tif") 
-pizzo_cengalo_2013 = rast("L8_2013.tif")
+# Landsat 5 (evento 27.12.2011)
+cengalo2011 = rast("landsat5_2011.tif")
+cengalo2013 = rast("landsat8_2013.tif")
+# Sentinel-2 (evento 23.08.2017) 
+cengalo_primavera2017 = rast("sentinel2_primavera2017.tif")
+cengalo_pre2017 = rast("sentinel2_pre_pre_evento.tif")
+cengalo2017 = rast("sentinel2_estate2017.tif")
+cengalo2018 = rast("sentinel2_estate2018.tif")
 #===================================================================================================================================================================
 #👀Visualizzazione delle immagini 
 
 # Plot delle due immagini 
 # Landsat 5
-plot(pizzo_cengalo_2011)
-plot(pizzo_cengalo_2013)
+plot(cengalo2011)
+plot(cengalo2013)
+# Sentinel-2
+plot(cengalo_primavera2017)
+plot(cengalo_pre2017)
+plot(cengalo2017)
+plot(cengalo2018)
 
 # Visualizzazione in colori naturali
 # Corrisponde alla visualizzazione nel visibile
 # [im.plotRGB = combina le tre bande in una immagine RGB]
 # Landsat 5 
-im.plotRGB(pizzo_cengalo_2011, r=1, g=2, b=3)
-im.plotRGB(pizzo_cengalo_2013, r=1, g=2, b=3)
+im.plotRGB(cengalo2011, r=1, g=2, b=3)
+im.plotRGB(cengalo2013, r=3, g=2, b=1)
+# Sentinel-2
+im.plotRGB(cengalo_primavera2017, r=1, g=2, b=3)
+im.plotRGB(cengalo_pre2017, r=1, g=2, b=3)
+im.plotRGB(cengalo2017, r=1, g=2, b=3)
+im.plotRGB(cengalo2018, r=1, g=2, b=3)
+
+
+# Visualizzazione in falsi colori
+# Presentazione della banda dell'infrarosso vicino (NIR - Near InfraRed) sulla componente del rosso
+# piante -> riflettono molto il NIR (valori alti)
+# roccia 
+# Landsat 5
+im.plotRGB(cengalo2011, r=4, g=3, b=2)
+im.plotRGB(cengalo2013, r=4, g=3, b=2)
+# Sentinel-2
+im.plotRGB(cengalo_primavera2017, r=4, g=3, b=2)
+im.plotRGB(cengalo_pre2017, r=1, g=2, b=3)
+im.plotRGB(cengalo2017, r=4, g=3, b=2)
+im.plotRGB(cengalo2018, r=4, g=3, b=2)
+#===================================================================================================================================================================
+# Da valutare 
+pairs(pizzo_cengalo_2017)
+#===================================================================================================================================================================
+# Analisi dei file 
+pizzo_cengalo_2017 
+# Layers (bande)
+# 1 = red (b4)
+# 2 = green (b3)
+# 3 = blue (b2)
+# 4 = NIR (b8)
+
+pizzo_cengalo_2018 
+# Layers (bande)
+# 1 = red (b4)
+# 2 = green (b3)
+# 3 = blue (b2)
+# 4 = NIR (b8)
 
 
