@@ -112,12 +112,13 @@ pairs(ndvi)
 plot(ndvi[[1]], ndvi[[2]])
 abline(0, 1, col="red")
 
-# Verifica dell'intervallo di valori degli NDVI
-range= (ndvi[[1]])
-range = (ndvi[[2]])
+# asse x = ndvi 2017 
+# asse y = ndvi 2018 
+# linea -> ndvi 2017= ndvi 2018
 
-#inserire i valori del range 
-plot(ndvi[[1]], ndvi[[2]], xlim=c(), ylim=c())
+# dato che i punti stanno sotto la linea rossa è un segno che è stata registrata una perdita di vegetazione 
+# valori alti NDVI 2017 e valori bassi NDVI 2018 
+
 
 
 
