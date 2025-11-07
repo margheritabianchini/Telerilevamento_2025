@@ -20,12 +20,12 @@
 # E. VARIABILITà SPAZIALE (deviazione standard) e PCA (?)
 
 #===================================================================================================================================================================
-#📚Richiamo dei pacchetti installati
+#📚 Richiamo dei pacchetti installati
 library(terra)
 library(imageRy)
 library(viridis) 
 #===================================================================================================================================================================
-#🛰️Importazione delle immagini satellitari della missione SENTINEL-2 
+#🛰️ Importazione delle immagini satellitari della missione SENTINEL-2 
 # (risoluzione spaziale = 10 m)
 # Le immagini sono state scaricate da GEE (Google Earth Engine)
 
@@ -41,8 +41,7 @@ cengalo2013 = rast("landsat8_2013.tif")
 cengalo2017 = rast("sentinel2_estate2017.tif")
 cengalo2018 = rast("sentinel2_estate2018.tif")
 #===================================================================================================================================================================
-#👀Visualizzazione delle immagini 
-
+#👀 Visualizzazione delle immagini 
 # Plot delle due immagini 
 # Landsat 5
 plot(cengalo2011)
@@ -73,9 +72,6 @@ im.plotRGB(cengalo2013, r=4, g=3, b=2)
 im.plotRGB(cengalo2017, r=4, g=3, b=2)
 im.plotRGB(cengalo2018, r=4, g=3, b=2)
 #===================================================================================================================================================================
-# Da valutare 
-pairs(pizzo_cengalo_2017)
-#===================================================================================================================================================================
 # Analisi dei file 
 cengalo2017 
 # Layers (bande)
@@ -91,7 +87,7 @@ cengalo2018
 # 3 = blue (b2)
 # 4 = NIR (b8)
 #===================================================================================================================================================================
-#🌳Calcolo dell'NDVI (Normal Difference Vegetation Index)
+#🌳 Calcolo dell'NDVI (Normal Difference Vegetation Index)
 ndvi2017=(cengalo2017[[4]] - cengalo2017[[1]]) / (cengalo2017[[4]] + cengalo2017[[1]])
 ndvi2018=(cengalo2018[[4]] - cengalo2018[[1]]) / (cengalo2018[[4]] + cengalo2018[[1]])
 
@@ -102,10 +98,29 @@ plot(ndvi2018)
 im.multiframe(1,2)
 plot(ndvi2017, col=inferno(100)) 
 plot(ndvi2018, col=inferno(100))
+dev.off()
 #===================================================================================================================================================================
-#📉Scatterplots
-pairs(ndvi2017)
-plot(ndvi2017[[1]], ndvi2017[[2]])
+#⛓️ Concatenamento dei due NDVI 
+ndvi=c(ndvi2017, ndvi2018)
+
+# Verifica dell'operazione 
+plot(ndvi[[1]]) 
+plot(ndvi[[2]])
+#===================================================================================================================================================================
+#📈 Scatterplots
+pairs(ndvi)
+plot(ndvi[[1]], ndvi[[2]])
+abline(0, 1, col="red")
+
+# Verifica dell'intervallo di valori degli NDVI
+range= (ndvi[[1]])
+range = (ndvi[[2]])
+
+#inserire i valori del range 
+plot(ndvi[[1]], ndvi[[2]], xlim=c(), ylim=c())
+
+
+
 
 
 
