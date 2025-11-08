@@ -126,5 +126,6 @@ abline(0, 1, col="red")
 # export del grafico 
 #===================================================================================================================================================================
 # Differenza tra NDVI e approfondimento analisi multitemporale oppure valutare se fare direttamente la classificazione 
+diff_ndvi = ndvi[[2]] -  ndvi [[1]] # ndvi2018 - ndvi2017
 
 
