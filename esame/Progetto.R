@@ -125,6 +125,6 @@ abline(0, 1, col="red")
 
 # export del grafico 
 #===================================================================================================================================================================
-
+# Differenza tra NDVI e approfondimento analisi multitemporale oppure valutare se fare direttamente la classificazione 
 
 
