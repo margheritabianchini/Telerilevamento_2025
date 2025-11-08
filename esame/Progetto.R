@@ -112,16 +112,19 @@ pairs(ndvi)
 plot(ndvi[[1]], ndvi[[2]])
 abline(0, 1, col="red")
 
-# asse x = ndvi 2017 
-# asse y = ndvi 2018 
-# linea -> ndvi 2017= ndvi 2018
+# asse x = NDVI 2017 
+# asse y = NDVI 2018 
+# linea -> NDVI 2017= NDVI 2018
 
 # dato che i punti stanno sotto la linea rossa è un segno che è stata registrata una perdita di vegetazione 
-# valori alti NDVI 2017 e valori bassi NDVI 2018 
+# valori alti NDVI 2017 e valori bassi NDVI 2018 (x > y)
 
+# Diversamente, nel caso in cui: 
+# - no cambiamento -> i punti sarebbero sulla linea
+# - aumento vegetazione -> i punti sarebbero sopra la linea 
 
-
-
+# export del grafico 
+#===================================================================================================================================================================
 
 
 
