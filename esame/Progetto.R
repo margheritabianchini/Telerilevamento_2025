@@ -42,29 +42,32 @@ cengalo2017 = rast("sentinel2_estate2017.tif")
 cengalo2018 = rast("sentinel2_estate2018.tif")
 #===================================================================================================================================================================
 #👀 Visualizzazione delle immagini 
-# Plot delle due immagini 
-# Landsat 5
-plot(cengalo2011)
-plot(cengalo2013)
+# Landsat 
+plot(cengalo2011)    #landsat 5
+plot(cengalo2013)    #landsat 7 
+im.multiframe (1,2)
+
 # Sentinel-2
 plot(cengalo2017)
 plot(cengalo2018)
-
-# Visualizzazione in colori naturali
+#===================================================================================================================================================================
+#🌈 Visualizzazione in colori naturali
 # Corrisponde alla visualizzazione nel visibile
 # [im.plotRGB = combina le tre bande in una immagine RGB]
-# Landsat 5 
-im.plotRGB(cengalo2011, r=1, g=2, b=3)
-im.plotRGB(cengalo2013, r=3, g=2, b=1)
+# Landsat 
+im.plotRGB(cengalo2011, r=1, g=2, b=3)    #landsat 5
+im.plotRGB(cengalo2013, r=3, g=2, b=1)    #landsat 7 
+
 # Sentinel-2
 im.plotRGB(cengalo2017, r=1, g=2, b=3)
 im.plotRGB(cengalo2018, r=1, g=2, b=3)
-
-
-# Visualizzazione in falsi colori
+#===================================================================================================================================================================
+#👻 Visualizzazione in falsi colori
 # Presentazione della banda dell'infrarosso vicino (NIR - Near InfraRed) sulla componente del rosso
 # piante -> riflettono molto il NIR (valori alti)
-# roccia 
+# roccia -> riflette poco il NIR (valori bassi)
+# acqua -> riflette molto pocco il NIR (valori molto bassi) 
+
 # Landsat 5
 im.plotRGB(cengalo2011, r=4, g=3, b=2)
 im.plotRGB(cengalo2013, r=4, g=3, b=2)
