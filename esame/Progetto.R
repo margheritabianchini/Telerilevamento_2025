@@ -165,6 +165,9 @@ cengalo2018
 ndvi2017=(cengalo2017[[4]] - cengalo2017[[1]]) / (cengalo2017[[4]] + cengalo2017[[1]])     # NDVI = (NIR - red) / (NIR + red)
 ndvi2018=(cengalo2018[[4]] - cengalo2018[[1]]) / (cengalo2018[[4]] + cengalo2018[[1]])     # NDVI = (NIR - red) / (NIR + red)
 #===================================================================================================================================================================
+
+
+#===================================================================================================================================================================
 #🖼️ Multiframe con gli NDVI  
 
 im.multiframe(1,2)
@@ -176,19 +179,19 @@ dev.off()
 
 ndvi=c(ndvi2017, ndvi2018)
 
-# Verifica dell'operazione 
+# Verifica del concatenamento  
 plot(ndvi[[1]])     # NDVI 2017
 plot(ndvi[[2]])     # NDVI 2018
 #===================================================================================================================================================================
 #📈 Scatterplots
 
 pairs(ndvi)
-plot(ndvi[[1]], ndvi[[2]])
+plot(ndvi[[1]], ndvi[[2]], xlab="NDVI 2017", ylab="NDVI 2018", main="Scatterplots NDVI")
 abline(0, 1, col="red")
 
-# asse x = NDVI 2017 
+# asse x = NDVI 2017
 # asse y = NDVI 2018 
-# linea -> NDVI 2017= NDVI 2018
+# linea rossa -> NDVI 2017 = NDVI 2018
 
 # dato che i punti stanno sotto la linea rossa è un segno che è stata registrata una perdita di vegetazione 
 # valori alti NDVI 2017 e valori bassi NDVI 2018 (x > y)
@@ -197,7 +200,7 @@ abline(0, 1, col="red")
 # - no cambiamento -> i punti sarebbero sulla linea
 # - aumento vegetazione -> i punti sarebbero sopra la linea 
 
-# export del grafico 
+# export del grafico
 #===================================================================================================================================================================
 # Differenza tra NDVI e approfondimento analisi multitemporale oppure valutare se fare direttamente la classificazione 
 diff_ndvi = ndvi[[2]] -  ndvi [[1]] # ndvi2018 - ndvi2017
