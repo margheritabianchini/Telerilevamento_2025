@@ -17,9 +17,9 @@
 
 # -> Sentinel: 2017, 2018 (evento 23.08.2017)
 
-# B. CALCOLO DEGLI INDICI SPETTRALI (NDVI, scatterplot (?))
+# B. CALCOLO DEGLI INDICI SPETTRALI (NDVI)
 
-# C. ANALISI MULTITEMPORALE (differenza tra gli anni e ndvi, ridgeline plot, scatterplot)
+# C. ANALISI MULTITEMPORALE (scatterplot, differenza NDVI)
 
 # D. CLASSIFICAZIONE (calcolo delle percentuali, creazione degli istogrammi)
 
@@ -31,6 +31,7 @@
 library(terra)
 library(imageRy)
 library(viridis)
+library(ggplot2)
 #===================================================================================================================================================================
 #🛰️ Importazione delle immagini satellitari
 # LANDSAT 5 e LANDSAT 7 (risoluzione spaziale = 30 m) 
@@ -109,6 +110,20 @@ png("cengalo2018RGB.png")
 im.plotRGB(cengalo2018, r=1, g=2, b=3, title="Pizzo Cengalo anno 2018")
 dev.off()
 #===================================================================================================================================================================
+#🌄 Esportazione delle immagini (SE NON SERVE DA TOGLIERE!!!!!!!!!!!!!!!)
+
+png("evento_2011RGB.png")
+im.multiframe(2,1)
+im.plotRGB(cengalo2011, r=1, g=2, b=3, title="Pizzo Cengalo anno 2011")
+im.plotRGB(cengalo2013, r=3, g=2, b=1, title="Pizzo Cengalo anno 2013") 
+dev.off()
+
+png("evento_2017RGB.png")
+im.multiframe(2,1)
+im.plotRGB(cengalo2017, r=1, g=2, b=3, title="Pizzo Cengalo anno 2017")
+im.plotRGB(cengalo2018, r=1, g=2, b=3, title="Pizzo Cengalo anno 2018")
+dev.off()
+#===================================================================================================================================================================
 #👻 Visualizzazione in falsi colori
 # Presentazione della banda dell'infrarosso vicino (NIR - Near InfraRed) sulla componente del rosso
 # piante -> riflettono molto il NIR (valori alti)
@@ -140,7 +155,20 @@ dev.off()
 png("cengalo2018NIR.png")
 im.plotRGB(cengalo2018, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2018")
 dev.off()
+#===================================================================================================================================================================
+#🌄 Esportazione delle immagini (SE NON SERVE DA TOGLIERE!!!!!!!!!!!!!!!)
 
+png("evento_2011NIR.png")
+im.multiframe(2,1)
+im.plotRGB(cengalo2011, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2011") 
+im.plotRGB(cengalo2013, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2013") 
+dev.off()
+
+png("evento_2017NIR.png")
+im.multiframe(2,1)
+im.plotRGB(cengalo2017, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2017")
+im.plotRGB(cengalo2018, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2018")
+dev.off()
 #===================================================================================================================================================================
 # ANALISI DELL'EVENTO DI FRANA DEL 23.08.2017 - IMMAGINI DI SENTINEL-2 
 #===================================================================================================================================================================
@@ -165,14 +193,17 @@ cengalo2018
 ndvi2017=(cengalo2017[[4]] - cengalo2017[[1]]) / (cengalo2017[[4]] + cengalo2017[[1]])     # NDVI = (NIR - red) / (NIR + red)
 ndvi2018=(cengalo2018[[4]] - cengalo2018[[1]]) / (cengalo2018[[4]] + cengalo2018[[1]])     # NDVI = (NIR - red) / (NIR + red)
 #===================================================================================================================================================================
-
-
-#===================================================================================================================================================================
 #🖼️ Multiframe con gli NDVI  
 
 im.multiframe(1,2)
-plot(ndvi2017, col=inferno(100)) 
-plot(ndvi2018, col=inferno(100))
+plot(ndvi2017) 
+plot(ndvi2018)
+#===================================================================================================================================================================
+#🌄 Esportazione delle immagini
+png("ndvi.png")
+im.multiframe(1,2)
+plot(ndvi2017, col=inferno(100), main="Pizzo Cengalo NDVI anno 2017")
+plot(ndvi2018, col=inferno(100), main="Pizzo Cengalo NDVI anno 2018")
 dev.off()
 #===================================================================================================================================================================
 #⛓️ Concatenamento dei due NDVI 
@@ -183,10 +214,10 @@ ndvi=c(ndvi2017, ndvi2018)
 plot(ndvi[[1]])     # NDVI 2017
 plot(ndvi[[2]])     # NDVI 2018
 #===================================================================================================================================================================
-#📈 Scatterplots
+#📈 Scatterplot
 
 pairs(ndvi)
-plot(ndvi[[1]], ndvi[[2]], xlab="NDVI 2017", ylab="NDVI 2018", main="Scatterplots NDVI")
+plot(ndvi[[1]], ndvi[[2]], xlab="NDVI 2017", ylab="NDVI 2018", main="Scatterplot NDVI")
 abline(0, 1, col="red")
 
 # asse x = NDVI 2017
@@ -199,10 +230,35 @@ abline(0, 1, col="red")
 # Diversamente, nel caso in cui: 
 # - no cambiamento -> i punti sarebbero sulla linea
 # - aumento vegetazione -> i punti sarebbero sopra la linea 
+#===================================================================================================================================================================
+#🌄 Esportazione del grafico
 
-# export del grafico
+png("scatterplotNDVI.png") 
+plot(ndvi[[1]], ndvi[[2]], xlab="NDVI 2017", ylab="NDVI 2018", main="Scatterplot NDVI")
+abline(0, 1, col="red")
+dev.off()
 #===================================================================================================================================================================
 # Differenza tra NDVI e approfondimento analisi multitemporale oppure valutare se fare direttamente la classificazione 
-diff_ndvi = ndvi[[2]] -  ndvi [[1]] # ndvi2018 - ndvi2017
+
+diff_ndvi = ndvi[[2]] -  ndvi[[1]]     # NDVI 2018 - NDVI 2017
+plot(diff_ndvi)
+#===================================================================================================================================================================
+#🌄 Esportazione dell'immagine
+
+png("differenza_NDVI.png")
+plot(diff_ndvi, col=inferno(100), main="Differenza NDVI (anno 2018 - anno 2017)")
+dev.off()
+#===================================================================================================================================================================
+#🎨 Classificazione della differenza tra gli NDVI -> determinazione della percentuale di sedimento mobilizzato
+
+cengaloc = im.classify(diff_ndvi, num_clusters=2)
+# classe 1 = detrito mobilizzato 
+# classe 2 = area non variata 
+
+#frequency
+
+
+
+
 
 
