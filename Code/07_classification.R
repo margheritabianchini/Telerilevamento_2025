@@ -25,7 +25,7 @@ mato2006 = flip(mato2006)
 plot(mato2006)
 
 
-#Classify ----------------------------------------------------------------------------------------------------------------------------------------------------------
+#🎨Classify ---------------------------------------------------------------------------------------------------------------------------------------------------------
 #clustering -> distinguishes based on a spectral/statistical similarity calculated by the algorithm.
 mato1992c = im.classify(mato1992, num_clusters=2)     #[classify=generates a random classification based on the n classes (clusters indicate)]
                                                       #[num_clusters=number of classes]
