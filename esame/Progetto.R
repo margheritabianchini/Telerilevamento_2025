@@ -198,6 +198,7 @@ ndvi2018=(cengalo2018[[4]] - cengalo2018[[1]]) / (cengalo2018[[4]] + cengalo2018
 im.multiframe(1,2)
 plot(ndvi2017) 
 plot(ndvi2018)
+dev.off()
 #===================================================================================================================================================================
 #🌄 Esportazione delle immagini
 png("ndvi.png")
@@ -231,14 +232,18 @@ abline(0, 1, col="red")
 # - no cambiamento -> i punti sarebbero sulla linea
 # - aumento vegetazione -> i punti sarebbero sopra la linea 
 #===================================================================================================================================================================
-#🌄 Esportazione del grafico
+#🌄 Esportazione dei grafici
+
+png("pairsNDVI.png")
+pairs(ndvi)
+dev.off()
 
 png("scatterplotNDVI.png") 
 plot(ndvi[[1]], ndvi[[2]], xlab="NDVI 2017", ylab="NDVI 2018", main="Scatterplot NDVI")
 abline(0, 1, col="red")
 dev.off()
 #===================================================================================================================================================================
-# Differenza tra NDVI e approfondimento analisi multitemporale oppure valutare se fare direttamente la classificazione 
+#➖ Differenza tra NDVI e approfondimento analisi multitemporale oppure valutare se fare direttamente la classificazione 
 
 diff_ndvi = ndvi[[2]] -  ndvi[[1]]     # NDVI 2018 - NDVI 2017
 plot(diff_ndvi)
@@ -249,13 +254,54 @@ png("differenza_NDVI.png")
 plot(diff_ndvi, col=inferno(100), main="Differenza NDVI (anno 2018 - anno 2017)")
 dev.off()
 #===================================================================================================================================================================
-#🎨 Classificazione della differenza tra gli NDVI -> determinazione della percentuale di sedimento mobilizzato
+#✂️ Ritaglio del file della differenza tra NDVI (tipo SpatRaster)
+# in questo modo è stata rimossa la porzione di raster coperta dalle nuvole
 
-cengaloc = im.classify(diff_ndvi, num_clusters=2)
-# classe 1 = detrito mobilizzato 
-# classe 2 = area non variata 
+# Codice utilizzato per tagliare manualmente l'immagine
+# plot(diff_ndvi)
+# extent_interactive = drawExtent()     # crea e definisce manualmente il rettangolo da ritagliare
+# ndvi_diff_crop = crop(diff_ndvi, extent_interactive)     # ritaglia lo SpatRaster secondo l'extent selezionato 
+# plot(ndvi_diff_crop, main="Differenza NDVI ritagliato (anno 2018 - anno 2017)")    # visualizzazione del risultato 
+# writeRaster(ndvi_diff_crop, "ndvi_diff_crop.tif", overwrite=TRUE)    # salvataggio del file ritagliato
 
-#frequency
+# Confronto del file originale e il file ritagliato
+plot(diff_ndvi)
+plot(ndvi_diff_crop)
+#===================================================================================================================================================================
+#🎨 Classificazione della differenza ritagliata tra gli NDVI -> determinazione della percentuale di sedimento mobilizzato
+
+cengaloc = im.classify(ndvi_diff_crop, num_clusters=2)
+# classe 1 = area invariata 
+# classe 2 = detrito mobilizzato  
+#===================================================================================================================================================================
+#🌄 Esportazione dell'immagine
+
+png("classify_diffNDVI_crop.png")
+levels(cengaloc) = data.frame(ID = c(1,2), Classe = c("No\nvariato", "Detrito"))
+plot(cengaloc, main="Classificazione differenza NDVI")
+dev.off()
+#===================================================================================================================================================================
+#📱 Analisi statistica 
+# Calcolo della frequenza e del totale 
+# Frequenza
+freq_cengalo = freq(cengaloc)     # calcolo della frequenza dei valori dei pixel che compongono il raster classificato dell'area studiata  
+# Numero di celle 
+tot_cengalo = ncell(cengaloc)     # calcolo del numero totale di pixel 
+
+# Calcolo della proporzione e percentuale delle classi 
+# Proporzione
+prop_cengalo = freq_cengalo / tot_cengalo
+# Percentuale 
+perc_cengalo = prop_cengalo * 100     # perc = (freq / tot) * 100
+#===================================================================================================================================================================
+
+
+
+
+
+
+
+
 
 
 
