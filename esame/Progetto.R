@@ -282,6 +282,7 @@ plot(cengaloc, main="Classificazione differenza NDVI")
 dev.off()
 #===================================================================================================================================================================
 #📱 Analisi statistica 
+
 # Calcolo della frequenza e del totale 
 # Frequenza
 freq_cengalo = freq(cengaloc)     # calcolo della frequenza dei valori dei pixel che compongono il raster classificato dell'area studiata  
@@ -290,11 +291,35 @@ tot_cengalo = ncell(cengaloc)     # calcolo del numero totale di pixel
 
 # Calcolo della proporzione e percentuale delle classi 
 # Proporzione
-prop_cengalo = freq_cengalo / tot_cengalo
-# Percentuale 
+prop_cengalo = freq_cengalo$count / tot_cengalo    # prop = (freq / tot)
+#Verifica dei valori calcolati
+freq_cengalo 
+# Percentuale
 perc_cengalo = prop_cengalo * 100     # perc = (freq / tot) * 100
+perc_cengalo 
 #===================================================================================================================================================================
+# 📅 Rappresentazione dei dati in tabella
 
+classi = c("Area invariata", "Detrito mobilizzato")     # definizione delle classi 
+percentuale = c(98,2)    # colonna di valori
+tabdetrito = data.frame(classi, percentuale)
+#===================================================================================================================================================================
+#📊 Rappresentazione dei dati come istogrammi 
+
+p1 = ggplot(tabdetrito, aes(x=classi, y=percentuale, color=classi, fill=classi)) +  
+  geom_bar(stat="identity") + 
+   labs(title = "Impatto dell'evento 23.08.2017") +
+  theme(
+    plot.title = element_text(
+      face = "bold",    # grassetto
+      hjust = 0.5)) +
+  ylim(c(0,100))
+#===================================================================================================================================================================
+#🌄 Esportazione del grafico 
+
+png("p1_tabdetrito.png")
+plot(p1)
+dev.off()
 
 
 
