@@ -17,13 +17,14 @@
 
 # -> Sentinel: 2017, 2018 (evento 23.08.2017)
 
-# B. CALCOLO DEGLI INDICI SPETTRALI (NDVI)
+# B. CALCOLO DEGLI INDICI SPETTRALI (NDVI, pairs e scatterplot NDVI)
 
-# C. ANALISI MULTITEMPORALE (scatterplot, differenza NDVI)
+# C. VARIABILITà SPAZIALE (deviazione standard NDVI)
 
-# D. CLASSIFICAZIONE (calcolo delle percentuali, creazione degli istogrammi)
+# D. ANALISI MULTITEMPORALE (differenza NDVI) + crop dell'area 
 
-# E. VARIABILITà SPAZIALE (deviazione standard) e PCA (?)
+# E. CLASSIFICAZIONE (classificazione in 2 classi, analisi statistica, produzione tabella e istogramma)
+
 #===================================================================================================================================================================
 # ANALISI GENERALE DEGLI EVENTI DI FRANA NELL'AREA 
 #===================================================================================================================================================================
@@ -63,19 +64,19 @@ plot(cengalo2018)
 #===================================================================================================================================================================
 #🌄 Esportazione delle immagini
 
-png("cengalo2011.png")
+png("cengalo2011.png", width = 2000, height = 1500, res=300)
 plot(cengalo2011)
 dev.off()
 
-png("cengalo2013.png")
+png("cengalo2013.png", width = 2000, height = 1500, res=300)
 plot(cengalo2013)
 dev.off()
 
-png("cengalo2017.png")
+png("cengalo2017.png", width = 2000, height = 1500, res=300)
 plot(cengalo2017)
 dev.off()
 
-png("cengalo2018.png")
+png("cengalo2018.png", width = 2000, height = 1500, res=300)
 plot(cengalo2018)
 dev.off()
 #===================================================================================================================================================================
@@ -94,31 +95,31 @@ im.plotRGB(cengalo2018, r=1, g=2, b=3, title="Pizzo Cengalo anno 2018")
 #===================================================================================================================================================================
 #🌄 Esportazione delle immagini
 
-png("cengalo2011RGB.png")
+png("cengalo2011RGB.png", width = 2000, height = 1500, res=300)
 im.plotRGB(cengalo2011, r=1, g=2, b=3, title="Pizzo Cengalo anno 2011")
 dev.off()
 
-png("cengalo2013RGB.png")
+png("cengalo2013RGB.png", width = 2000, height = 1500, res=300)
 im.plotRGB(cengalo2013, r=3, g=2, b=1, title="Pizzo Cengalo anno 2013") 
 dev.off()
 
-png("cengalo2017RGB.png")
+png("cengalo2017RGB.png", width = 2000, height = 1500, res=300)
 im.plotRGB(cengalo2017, r=1, g=2, b=3, title="Pizzo Cengalo anno 2017")
 dev.off()
 
-png("cengalo2018RGB.png")
+png("cengalo2018RGB.png", width = 2000, height = 1500, res=300)
 im.plotRGB(cengalo2018, r=1, g=2, b=3, title="Pizzo Cengalo anno 2018")
 dev.off()
 #===================================================================================================================================================================
 #🌄 Esportazione delle immagini (SE NON SERVE DA TOGLIERE!!!!!!!!!!!!!!!)
 
-png("evento_2011RGB.png")
+png("evento_2011RGB.png", width = 2000, height = 1500, res=300)
 im.multiframe(2,1)
 im.plotRGB(cengalo2011, r=1, g=2, b=3, title="Pizzo Cengalo anno 2011")
 im.plotRGB(cengalo2013, r=3, g=2, b=1, title="Pizzo Cengalo anno 2013") 
 dev.off()
 
-png("evento_2017RGB.png")
+png("evento_2017RGB.png", width = 2000, height = 1500, res=300)
 im.multiframe(2,1)
 im.plotRGB(cengalo2017, r=1, g=2, b=3, title="Pizzo Cengalo anno 2017")
 im.plotRGB(cengalo2018, r=1, g=2, b=3, title="Pizzo Cengalo anno 2018")
@@ -140,31 +141,31 @@ im.plotRGB(cengalo2018, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2018")
 #===================================================================================================================================================================
 #🌄 Esportazione delle immagini
 
-png("cengalo2011NIR.png")
+png("cengalo2011NIR.png", width = 2000, height = 1500, res=300)
 im.plotRGB(cengalo2011, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2011") 
 dev.off()
 
-png("cengalo2013NIR.png")
+png("cengalo2013NIR.png", width = 2000, height = 1500, res=300)
 im.plotRGB(cengalo2013, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2013") 
 dev.off()
 
-png("cengalo2017NIR.png")
+png("cengalo2017NIR.png", width = 2000, height = 1500, res=300)
 im.plotRGB(cengalo2017, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2017")
 dev.off()
 
-png("cengalo2018NIR.png")
+png("cengalo2018NIR.png", width = 2000, height = 1500, res=300)
 im.plotRGB(cengalo2018, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2018")
 dev.off()
 #===================================================================================================================================================================
 #🌄 Esportazione delle immagini (SE NON SERVE DA TOGLIERE!!!!!!!!!!!!!!!)
 
-png("evento_2011NIR.png")
+png("evento_2011NIR.png", width = 2000, height = 1500, res=300)
 im.multiframe(2,1)
 im.plotRGB(cengalo2011, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2011") 
 im.plotRGB(cengalo2013, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2013") 
 dev.off()
 
-png("evento_2017NIR.png")
+png("evento_2017NIR.png", width = 2000, height = 1500, res=300)
 im.multiframe(2,1)
 im.plotRGB(cengalo2017, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2017")
 im.plotRGB(cengalo2018, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2018")
@@ -201,9 +202,18 @@ plot(ndvi2018)
 dev.off()
 #===================================================================================================================================================================
 #🌄 Esportazione delle immagini
-png("ndvi.png")
+
+png("ndvi.png", width = 2000, height = 1500, res=300)
 im.multiframe(1,2)
 plot(ndvi2017, col=inferno(100), main="Pizzo Cengalo NDVI anno 2017")
+plot(ndvi2018, col=inferno(100), main="Pizzo Cengalo NDVI anno 2018")
+dev.off()
+
+png("ndvi2017.png", width = 2000, height = 1500, res=300)
+plot(ndvi2017, col=inferno(100), main="Pizzo Cengalo NDVI anno 2017")
+dev.off()
+
+png("ndvi2018.png", width = 2000, height = 1500, res=300)
 plot(ndvi2018, col=inferno(100), main="Pizzo Cengalo NDVI anno 2018")
 dev.off()
 #===================================================================================================================================================================
@@ -234,23 +244,46 @@ abline(0, 1, col="red")
 #===================================================================================================================================================================
 #🌄 Esportazione dei grafici
 
-png("pairsNDVI.png")
+png("pairsNDVI.png", width = 2000, height = 1500, res=300)
 pairs(ndvi)
 dev.off()
 
-png("scatterplotNDVI.png") 
+png("scatterplotNDVI.png", width = 2000, height = 1500, res=300) 
 plot(ndvi[[1]], ndvi[[2]], xlab="NDVI 2017", ylab="NDVI 2018", main="Scatterplot NDVI")
 abline(0, 1, col="red")
 dev.off()
 #===================================================================================================================================================================
-#➖ Differenza tra NDVI e approfondimento analisi multitemporale oppure valutare se fare direttamente la classificazione 
+#⛰️ Determinazione della variabilità spaziale -> deviazione standard  
+# La valutazione è stata svolta sull'NDVI, rispetto al NIR è meno sensibile al contesto topografico
+
+# Deviazione standard (su matrice 3x3)
+sd3_ndvi2017 = focal(ndvi2017, w=c(3,3), fun=sd)     # deviazione standard calcolata su una matrice 3x3 
+sd3_ndvi2018 = focal(ndvi2018, w=c(3,3), fun=sd)     # deviazione standard calcolata su una matrice 3x3 
+plot(sd3_ndvi2017)
+plot(sd3_ndvi2018)
+
+# Confrontando le due deviazioni standard degli NDVI è evidente la rappresentazione della variabilità spaziale locale
+# i valori più alti si registrano nelle zone di canale interessate dal detrito mobilizzato
+# è possibile tracciare il perimetro fino a valle
+# Nella scala generale dei valori, risultano dei valori minori di deviazione standard nel 2017 rispetto al 2018
+# Questa è una conseguenza diretta dell'impatto della frana che tende a ridurre i valori di variabilità spaziale nell'area 
+#===================================================================================================================================================================
+#🌄 Esportazione delle immagini  
+
+png("sd3.png", width = 2000, height = 1500, res=300)
+im.multiframe (1,2)
+plot(sd3_ndvi2017, col=mako(100), main="Deviazione standard NDVI 2017")
+plot(sd3_ndvi2018, col=mako(100), main="Deviazione standard NDVI 2018") 
+dev.off()
+#===================================================================================================================================================================
+#➖ Differenza tra NDVI 
 
 diff_ndvi = ndvi[[2]] -  ndvi[[1]]     # NDVI 2018 - NDVI 2017
 plot(diff_ndvi)
 #===================================================================================================================================================================
 #🌄 Esportazione dell'immagine
 
-png("differenza_NDVI.png")
+png("differenza_NDVI.png", width = 2000, height = 1500, res=300)
 plot(diff_ndvi, col=inferno(100), main="Differenza NDVI (anno 2018 - anno 2017)")
 dev.off()
 #===================================================================================================================================================================
@@ -317,19 +350,7 @@ p1 = ggplot(tabdetrito, aes(x=classi, y=percentuale, color=classi, fill=classi))
 #===================================================================================================================================================================
 #🌄 Esportazione del grafico 
 
-png("p1_tabdetrito.png")
+png("p1_tabdetrito.png", width = 2000, height = 1500, res=300)
 plot(p1)
 dev.off()
-
-
-
-
-
-
-
-
-
-
-
-
-
+#===================================================================================================================================================================
