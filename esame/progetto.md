@@ -4,4 +4,5 @@
 
 ## Introduzione
 Il 23 agosto 2017, nella località del comune di Bregaglia (Val Bondasca, Svizzera). 
+
 ![area_studio](https://github.com/user-attachments/assets/69e65690-1888-4ff6-84e4-825944e47463)
