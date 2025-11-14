@@ -1,5 +1,5 @@
 # PROGETTO TELERILEVAMENTO 2025 
-# FRANA DEL PIZZO CENGALO (VAL BONDASCA) - SVIZZERA 
+# FRANA DEL PIZZO CENGALO (VAL BONDASCA, SVIZZERA) 
 #===================================================================================================================================================================
 # METODO DI ANALISI DELLE IMMAGINI TELERILEVATE -> COMPRENSIONE DEL FENOMENO DI PIZZO CENGALO PER FUTURI EVENTI 
 #===================================================================================================================================================================
