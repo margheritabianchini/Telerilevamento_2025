@@ -5,7 +5,16 @@
 
 ## INDICE
 ### 1. Introduzione
-### 2. 
+### 2. Dati
+### 3. Metodo e risultati  
+#### 3.1 Visualizzazione delle immagini
+#### 3.2 Calcolo dell'NDVI 
+#### 3.3 Variabilità spaziale 
+#### 3.4 Analisi multitemporale 
+#### 3.5 Classificazione 
+### 4. Discussione 
+### 5. Conclusioni 
+
 
 ## Introduzione 
 La mattina del 23 agosto 2017, nella località di Bregaglia (Val Bondasca, Svizzera), un volume di circa 3 x 10<sup>6</sup> m<sup>3</sup> si è distaccato dalla parete nord-est del Pizzo Cengalo, determinando una frana complessa che in pochi minuti ha raggiunto l'abitato di Bondo.
