@@ -30,9 +30,8 @@ Quest'ultimo evento franoso si è sviluppato in più fasi:
 - **II° FASE:** rock avalanche
 - **III° FASE:** debris flow
 
-Nel presente progetto è stato analizzato nel dettaglio l'evento del 23 agosto 2017 confrontando lo scenario pre o post frana da un punto di vista di *variabilità spaziale*, *indici spettrali*, *analisi multitemporale* ed *impatto del fenomeno* nell'area. 
-punti da chiarire: frana complessa, rock avalanche
-
+Nel presente progetto è stato analizzato nel dettaglio l'evento del 23 agosto 2017 confrontando lo scenario pre o post frana da un punto di vista di ***variabilità spaziale***, ***indici spettrali***, ***analisi multitemporale*** ed ***impatto del fenomeno*** nell'area. 
+  
 ## Dati
 
 
