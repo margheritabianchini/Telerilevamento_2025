@@ -19,7 +19,8 @@
    3.5 Classificazione
    
 5. Discussione 
-6. Conclusioni 
+6. Conclusioni
+Bibliografia
 
 
 ## 1. Introduzione 
@@ -34,9 +35,10 @@ Quest'ultimo evento franoso si è sviluppato in più fasi:
 - **I° FASE:** distacco iniziale dal ghiacciaio
 - **II° FASE:** rock avalanche
 - **III° FASE:** debris flow
-<img width="767" height="625" alt="vista_frana " src="https://github.com/user-attachments/assets/a72da3a1-8fe7-4073-9782-bf807e5b150a" />
 
-![evento2017](<img width="767" height="625" alt="vista_frana " src="https://github.com/user-attachments/assets/a72da3a1-8fe7-4073-9782-bf807e5b150a" />)
+![evento2017](https://github.com/user-attachments/assets/a72da3a1-8fe7-4073-9782-bf807e5b150a)
+
+***Figura 2.** Rappresentazione 3D della frana del 2017 riportata nel lavoro di Mergili et al. 2020*
 
 Nel presente progetto sono stati inquadrati i due eventi principali che sono stati registrati nell'area e nel dettaglio è stato analizzato l'evento del 23 agosto 2017 confrontando lo scenario pre o post frana da un punto di vista di: 
 - ***variabilità spaziale***
@@ -67,24 +69,34 @@ library(ggplot2)    # creazione dei grafici
 
 ## 3. Metodo e risultati
 ### 3.1 Visualizzazione delle immagini 
-All'inizio è stata impostata la cartella di lavoro e sono state importate le immagini satellitari dei due relativi eventi.
+Per prima cosa è stata impostata la working directory. 
 ``` r
 # Set della working directory
 setwd("C://Users/margh/Desktop/GEOLOGIA E TERRITORIO (LM-74)/TELERILEVAMENTO/materiale progetto")
 getwd()
-
-# Richiamo dei file 
-# Landsat (evento 27.12.2011)
-cengalo2011 = rast("landsat5_2011.tif")     #landsat 5
-cengalo2013 = rast("landsat8_2013.tif")     #landsat 7
-
-# Sentinel-2 (evento 23.08.2017) 
-cengalo2017 = rast("sentinel2_estate2017.tif")
-cengalo2018 = rast("sentinel2_estate2018.tif")
 ```
 
+Sono state richiamate, visualizzate ed esportate come file *.pgn* le immagini satellitari dei due relativi eventi:
+
+-> ***Evento 2011*** 
+``` r
+# Richiamo dei file
+cengalo2011 = rast("landsat5_2011.tif")    # Landsat 5
+cengalo2013 = rast("landsat8_2013.tif")    # Landsat 7
+
+# Visualizzazione
+plot(cengalo2011)                          # Landsat 5
+plot(cengalo2013)                          # Landsat 7
+```
+![cengalo_2011](
 
 
+
+``` r
+# Richiamo dei file (evento 2017)
+cengalo2017 = rast("sentinel2_estate2017.tif")    # Sentinel-2
+cengalo2018 = rast("sentinel2_estate2018.tif")    # Sentinel-2 
+```
 
 
 
