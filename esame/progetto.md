@@ -30,9 +30,24 @@ Quest'ultimo evento franoso si è sviluppato in più fasi:
 - **II° FASE:** rock avalanche
 - **III° FASE:** debris flow
 
-Nel presente progetto è stato analizzato nel dettaglio l'evento del 23 agosto 2017 confrontando lo scenario pre o post frana da un punto di vista di ***variabilità spaziale***, ***indici spettrali***, ***analisi multitemporale*** ed ***impatto del fenomeno*** nell'area. 
+Nel presente progetto sono stati inquadrati i due eventi principali che sono stati registrati nell'area e nel dettaglio è stato analizzato l'evento del 23 agosto 2017 confrontando lo scenario pre o post frana da un punto di vista di: 
+- ***variabilità spaziale***
+- ***indici spettrali***
+- ***analisi multitemporale***
+- ***impatto del fenomeno nell'area***
   
 ## Dati
+Le immagini satellitari sono state scaricate da [Google Earth Engine](https://earthengine.google.com/). 
+
+  |MISSIONI|         |EVENTO|Arco temporale|                 
+  |--------|--------|---------|-------|
+  |**Landsat** |*Landsat 5*|pre-evento|1.05.2011 - 1.09.2011|
+  |        |*Landsat 8*|post-evento|1.05.2013 - 1.10.2013|
+  |**Sentinel**|*Sentinel-2*|pre-evento|23.06.2017 - 23.08.2017|
+  |||post-evento|2.06.2018 - 23.08.2018|
+***Tabella 1.** Immagini satellitari utilizzate nell'analisi*
+
+
 
 
 
