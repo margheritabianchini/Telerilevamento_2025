@@ -76,7 +76,7 @@ setwd("C://Users/margh/Desktop/GEOLOGIA E TERRITORIO (LM-74)/TELERILEVAMENTO/mat
 getwd()
 ```
 
-Sono state richiamate, visualizzate ed esportate come file *.pgn* le immagini satellitari dei due relativi eventi:
+Sono state richiamate, visualizzate ed esportate come file `.pgn` le immagini satellitari dei due relativi eventi:
 
 ***-> Evento 2011*** 
 ``` r
@@ -88,10 +88,13 @@ cengalo2013 = rast("landsat8_2013.tif")    # Landsat 7
 plot(cengalo2011)                          # Landsat 5
 plot(cengalo2013)                          # Landsat 7
 ```
-![cengalo_2011](https://github.com/user-attachments/assets/ccbf7289-9fca-410f-a2a7-8b4d49480faa)
+![cengalo_2011](https://github.com/user-attachments/assets/c4cb1b61-e371-4bd9-80bf-e7c87fe9523c)
+
+
 ***Figura 3.** Area del Pizzo Cengalo nell'estate del 2011*
 
-![cengalo_2013](https://github.com/user-attachments/assets/7c27fa40-d14a-45d3-8144-c79d61ec9cb8)
+![cengalo_2013](https://github.com/user-attachments/assets/31345822-815d-4d8d-bf08-a09c124480a4)
+
 ***Figura 4.** Area del Pizzo Cengalo nell'estate del 2013*
 
 ***-> Evento 2017*** 
@@ -104,11 +107,62 @@ cengalo2018 = rast("sentinel2_estate2018.tif")    # Sentinel-2
 plot(cengalo2017)                                 # Sentinel-2
 plot(cengalo2018)                                 # Sentinel-2 
 ```
-![cengalo_2017](https://github.com/user-attachments/assets/d7e6920e-ba7a-47d2-b9fb-269235d6cfe3)
+![cengalo_2017](https://github.com/user-attachments/assets/5a174782-2c61-4264-b5c7-aac5a565332a)
+
 ***Figura 5.** Area del Pizzo Cengalo nell'estate del 2017 (pre-evento)*
 
-![cengalo_2018](https://github.com/user-attachments/assets/950c3939-c432-4fbc-a0d9-41baac9c3ecd)
+
+![cengalo_2018](https://github.com/user-attachments/assets/290b1393-4e01-48d0-8fb2-f55b8494cda9)
+
 ***Figura 6.** Area del Pizzo Cengalo nell'estate del 2018*
+
+--------
+>[!NOTE]
+> Ogni immagine presente in questo lavoro è stata esportata utilizzando la sequenza di funzioni di R:
+>
+>`png("immagine.png")`
+>
+>`plot(immagine)`
+>
+>`dev.off()`
+-----------
+
+Le immagini sono state rappresentate nello **spettro visibile** con la funzione `im.plotRGB` che combina le tre bande in un'immagine RGB: 
+
+***-> Evento 2011*** 
+``` r
+im.multiframe(1,2)                                                         # creazione di un multiframe 
+im.plotRGB(cengalo2011, r=1, g=2, b=3, title="Pizzo Cengalo anno 2011")    # Landsat 5
+im.plotRGB(cengalo2013, r=3, g=2, b=1, title="Pizzo Cengalo anno 2013")    # Landsat 7 
+```
+Per l'immagine acquisita del satellite Landsat 7 è stata calibrata diversamente dalle altre 
+![evento2011_RGB](https://github.com/user-attachments/assets/69fe2465-e9ff-48db-b471-0bae86626786)
+
+***Figura 7.** Rappresentazione dell'evento del 2011 nello spettro visibile*
+
+***-> Evento 2017*** 
+``` r
+im.plotRGB(cengalo2017, r=1, g=2, b=3, title="Pizzo Cengalo anno 2017")   # Sentinel-2
+im.plotRGB(cengalo2018, r=1, g=2, b=3, title="Pizzo Cengalo anno 2018")   # Sentinel-2
+dev.off()                                                                 # chiusura del multiframe 
+```
+![evento2017_RGB](https://github.com/user-attachments/assets/aa821a02-b911-43d3-91fc-30f5d5a6df19)
+
+***Figura 8.** Rappresentazione dell'evento del 2017 nello spettro visibile*
+
+---------
+Successivamente, sono state visualizzate in **falsi colori**, con la banda dell'infrarosso vicino (NIR) sulla componente del rosso.
+In questo si differenziano: 
+- piante: riflettanza NIR molto alta 
+- roccia: riflettanza NIR bassa 
+- acqua: riflettanza NIR molto bassa 
+
+
+
+
+
+
+
 
 
 
