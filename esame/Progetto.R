@@ -190,7 +190,7 @@ cengalo2018
 # 3 = blue (b2)
 # 4 = NIR (b8)
 #===================================================================================================================================================================
-#🌳 Calcolo dell'NDVI (Normal Difference Vegetation Index)
+#🌳 Calcolo dell'NDVI (Normalized Difference Vegetation Index)
 
 ndvi2017=(cengalo2017[[4]] - cengalo2017[[1]]) / (cengalo2017[[4]] + cengalo2017[[1]])     # NDVI = (NIR - red) / (NIR + red)
 ndvi2018=(cengalo2018[[4]] - cengalo2018[[1]]) / (cengalo2018[[4]] + cengalo2018[[1]])     # NDVI = (NIR - red) / (NIR + red)
