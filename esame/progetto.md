@@ -1,24 +1,26 @@
-## PROGETTO DI TELERILEVAMENTO GEO-ECOLOGICO IN R - A.A. 2024/2025
 > #### Margherita Bianchini
+> ## PROGETTO DI TELERILEVAMENTO GEO-ECOLOGICO IN R - A.A. 2024/2025
+> #### Corso di Laurea Magistrale in Geologia e Territorio (LM-74)
+
 ------------------
 # Caso di studio della frana di Pizzo Cengalo (Val Bondasca, Svizzera)
 
 ## Indice 
 1. Introduzione
 2. Dati
-4. Visualizzazione degli eventi franosi
-5. Analisi dell'evento del 2017
-   5.1 NDVI (Normal Difference Vegetation Index) 
+3. Visualizzazione degli eventi franosi principali 
+4. Analisi dell'evento del 23.08.2017
    
-   5.2 Variabilità spaziale
+   4.1 NDVI (Normalized Difference Vegetation Index) 
    
-   5.3 Analisi multitemporale
+   4.2 Variabilità spaziale
    
-   5.4 Classificazione
-6. Discussione 
+   4.3 Analisi multitemporale
+   
+   4.4 Classificazione
+6. Discussione
 7. Conclusioni
 Bibliografia
-
 
 ## 1. Introduzione 
 La mattina del 23 agosto 2017, nella località di Bregaglia (Val Bondasca, Svizzera), un volume di circa 3 x 10<sup>6</sup> m<sup>3</sup> si è distaccato dalla parete nord-est del Pizzo Cengalo (3368 m s.l.m.), innescando un **fenomeno franoso** che in pochi minuti ha raggiunto l'abitato di Bondo a valle.
@@ -65,8 +67,7 @@ library(viridis)    # editing delle palette di colori
 library(ggplot2)    # creazione dei grafici
 ```
 
-## 3. Metodo e risultati
-### 3.1 Visualizzazione delle immagini 
+## 3. Visualizzazione degli eventi franosi principali
 Per prima cosa è stata impostata la working directory. 
 ``` r
 # Set della working directory
@@ -153,7 +154,7 @@ dev.off()                                                                 # chiu
 
 ---------
 Successivamente, sono state visualizzate in **falsi colori**, ponendo la banda dell'infrarosso vicino (NIR) sulla componente del rosso.
-In questo si differenziano: 
+In questo si differenziano i vari elementi di un'immagine: 
 - piante: riflettanza NIR molto alta 
 - roccia: riflettanza NIR bassa 
 - acqua: riflettanza NIR molto bassa
@@ -177,12 +178,72 @@ im.plotRGB(cengalo2018, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2018")     
 ***Figura 10.** Visualizzazione dell'evento del 2017 in falsi colori.*
 
 ---------
+## 4. Analisi dell'evento del 23.08.2017
+### 4.1 NDVI (Normalized Difference Vegetation Index)
+Prima di tutto è stata considerata la combinazione delle bande delle immagini satellitari richiamando il file del pre-frana e post-frana
+``` r
+cengalo2017 
+# Layers (bande)
+# 1 = red (b4)
+# 2 = green (b3)
+# 3 = blue (b2)
+# 4 = NIR (b8)
 
-### 3.2 NDVI (Normal Difference Vegetation Index)
-rima di tutto sono stati analizzate le bande di ciascuna imm
+cengalo2018 
+# Layers (bande)
+# 1 = red (b4)
+# 2 = green (b3)
+# 3 = blue (b2)
+# 4 = NIR (b8)
+```
+L'**NDVI (Normalized Difference Vegetation Index)** è un indice spettrale utile per valutare lo stato della vegetazione e monitorare la variazione della copertura vegetale a seguito di un evento di natura franosa.
+``` r
+# Calcolo dell'NDVI (Normalized Difference Vegetation Index)
+ndvi2017=(cengalo2017[[4]] - cengalo2017[[1]]) / (cengalo2017[[4]] + cengalo2017[[1]])     # NDVI = (NIR - red) / (NIR + red)
+ndvi2018=(cengalo2018[[4]] - cengalo2018[[1]]) / (cengalo2018[[4]] + cengalo2018[[1]])     # NDVI = (NIR - red) / (NIR + red)
+
+# Multiframe con gli NDVI  
+im.multiframe(1,2)
+plot(ndvi2017) 
+plot(ndvi2018)
+dev.off()
+```
+![ndvi](https://github.com/user-attachments/assets/ec430e25-d205-4231-9786-71cbcb347264)
+
+***Figura 11.** NDVI dell'area in esame.*
+
+I risultati ottenuti sono stati rappresentati in forma di **scatterplot (grafico a dispersione)** con la funzione `pairs` e il seguente `plot` rispetto ad una linea 1:1 per valutare la variazione della copertura vegetale.
+Il rapporto tra NDVI del 2017 e NDVI del 2018 evidenzia: 
+- un aumento della vegetazione: se i punti sono posti al di sopra della linea
+- l'assenza di variazioni: se i punti sono posti sulla linea
+- una perdita della copertura vegetale: se i punti sono posti al di sotto della linea
+
+``` r
+# Concatenamento degli NDVI 
+ndvi=c(ndvi2017, ndvi2018)
+
+# Verifica del concatenamento  
+plot(ndvi[[1]])     # NDVI 2017
+plot(ndvi[[2]])     # NDVI 2018
+
+# Scatterplot
+pairs(ndvi)
+plot(ndvi[[1]], ndvi[[2]], xlab="NDVI 2017", ylab="NDVI 2018", main="Scatterplot NDVI")
+abline(0, 1, col="red")
+```
+<img width="800" height="600" alt="pairsNDVI" src="https://github.com/user-attachments/assets/9b11ea2f-b58b-4da1-a30c-258efff8d7f1" />
+
+***Figura 12.** Risultati della funzione*`pairs`.
+
+<img width="800" height="600" alt="scatterplotNDVI" src="https://github.com/user-attachments/assets/18263c31-17f5-447b-96e3-f32cc7fe1ef8" />
+
+***Figura 13.** Scatterplot dell'NDVI del 2017 rispetto all'NDVI del 2018.*
+Dato che i punti risultano essere collocati al di sotto della linea 1:1 viene confermato l'impatto del fenomeno franoso che ha determinato una **perdita di vegetazione**. 
+
+### 4.2 Variabilità spaziale 
 
 
 
 
 
-
+👌
