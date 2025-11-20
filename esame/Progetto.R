@@ -26,7 +26,7 @@
 # E. CLASSIFICAZIONE (classificazione in 2 classi, analisi statistica, produzione tabella e istogramma)
 
 #===================================================================================================================================================================
-# ANALISI GENERALE DEGLI EVENTI DI FRANA NELL'AREA 
+# VISUALIZZAZIONE DEGLI EVENTI FRANOSI PRINCIPALI
 #===================================================================================================================================================================
 #📚 Richiamo dei pacchetti installati
 library(terra)
@@ -172,7 +172,7 @@ im.plotRGB(cengalo2017, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2017")
 im.plotRGB(cengalo2018, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2018")
 dev.off()
 #===================================================================================================================================================================
-# ANALISI DELL'EVENTO DI FRANA DEL 23.08.2017 - IMMAGINI DI SENTINEL-2 
+# ANALISI DELL'EVENTO DEL 23.08.2017 - IMMAGINI DI SENTINEL-2 
 #===================================================================================================================================================================
 #🔍 Analisi dei file 
 
