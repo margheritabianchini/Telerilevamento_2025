@@ -6,20 +6,17 @@
 ## Indice 
 1. Introduzione
 2. Dati
-3. Metodo e risultati
+4. Visualizzazione degli eventi franosi
+5. Analisi dell'evento del 2017
+   5.1 NDVI (Normal Difference Vegetation Index) 
    
-   3.1 Visualizzazione delle immagini
+   5.2 Variabilità spaziale
    
-   3.2 Calcolo dell'NDVI
+   5.3 Analisi multitemporale
    
-   3.3 Variabilità spaziale
-   
-   3.4 Analisi multitemporale
-   
-   3.5 Classificazione
-   
-5. Discussione 
-6. Conclusioni
+   5.4 Classificazione
+6. Discussione 
+7. Conclusioni
 Bibliografia
 
 
@@ -38,19 +35,20 @@ Quest'ultimo evento franoso si è sviluppato in più fasi:
 
 ![evento2017](https://github.com/user-attachments/assets/a72da3a1-8fe7-4073-9782-bf807e5b150a)
 
-***Figura 2.** Rappresentazione 3D della frana del 2017 riportata nel lavoro di Mergili et al. 2020*
+***Figura 2.** Rappresentazione 3D della frana del 2017 riportata nel lavoro di Mergili et al. 2020.*
 
-Nel presente progetto sono stati inquadrati i due eventi principali che sono stati registrati nell'area e nel dettaglio è stato analizzato l'evento del 23 agosto 2017 confrontando lo scenario pre o post frana da un punto di vista di: 
+Nel presente progetto sono presentati i principali eventi franosi che sono stati registrati nell'area del Pizzo Cengalo. Per l'evento del 23 agosto 2017 è stata svolta un'anilisi più dettagliata sullo scenario pre e post frana, basata su:  
 - ***variabilità spaziale***
-- ***indici spettrali***
+- ***indice spettrale (NDVI)***
 - ***analisi multitemporale***
 - ***impatto del fenomeno nell'area***
-  
+In questo modo è stato valutato l'impatto dell'evento in funzione dell'*area coinvolta*, del *volume mobilizzato* e dei *cambiamenti morfologici*, al fine di fornire delle informazioni fondamentali nel **monitoraggio** delle zone suscettibili e nella la **gestione di futuri eventi franosi** di questa tipologia (es. frana di Blatten)
+
 ## 2. Dati 
 Le immagini satellitari sono state scaricate da [Google Earth Engine](https://earthengine.google.com/). 
 
 
-***Tabella 1.** Immagini satellitari utilizzate nell'analisi*
+***Tabella 1.** Immagini satellitari utilizzate nell'analisi.*
 
   |MISSIONI|         |EVENTO|ARCO TEMPORALE|                 
   |--------|--------|---------|-------|
@@ -91,11 +89,11 @@ plot(cengalo2013)                          # Landsat 7
 ![cengalo_2011](https://github.com/user-attachments/assets/c4cb1b61-e371-4bd9-80bf-e7c87fe9523c)
 
 
-***Figura 3.** Area del Pizzo Cengalo nell'estate del 2011*
+***Figura 3.** Area del Pizzo Cengalo nell'estate del 2011.*
 
 ![cengalo_2013](https://github.com/user-attachments/assets/31345822-815d-4d8d-bf08-a09c124480a4)
 
-***Figura 4.** Area del Pizzo Cengalo nell'estate del 2013*
+***Figura 4.** Area del Pizzo Cengalo nell'estate del 2013.*
 
 ***-> Evento 2017*** 
 ``` r
@@ -109,12 +107,12 @@ plot(cengalo2018)                                 # Sentinel-2
 ```
 ![cengalo_2017](https://github.com/user-attachments/assets/5a174782-2c61-4264-b5c7-aac5a565332a)
 
-***Figura 5.** Area del Pizzo Cengalo nell'estate del 2017 (pre-evento)*
+***Figura 5.** Area del Pizzo Cengalo nell'estate del 2017 (pre-evento).*
 
 
 ![cengalo_2018](https://github.com/user-attachments/assets/290b1393-4e01-48d0-8fb2-f55b8494cda9)
 
-***Figura 6.** Area del Pizzo Cengalo nell'estate del 2018*
+***Figura 6.** Area del Pizzo Cengalo nell'estate del 2018.*
 
 --------
 >[!NOTE]
@@ -135,10 +133,13 @@ im.multiframe(1,2)                                                         # cre
 im.plotRGB(cengalo2011, r=1, g=2, b=3, title="Pizzo Cengalo anno 2011")    # Landsat 5
 im.plotRGB(cengalo2013, r=3, g=2, b=1, title="Pizzo Cengalo anno 2013")    # Landsat 7 
 ```
-Per l'immagine acquisita del satellite Landsat 7 è stata calibrata diversamente dalle altre 
+> [!TIP]
+> L'immagine acquisita del satellite Landsat 7 è stata calibrata diversamente dalle altre dato che ha una diversa combinazione delle bande. 
+>
+> 
 ![evento2011_RGB](https://github.com/user-attachments/assets/69fe2465-e9ff-48db-b471-0bae86626786)
 
-***Figura 7.** Rappresentazione dell'evento del 2011 nello spettro visibile*
+***Figura 7.** Rappresentazione dell'evento del 2011 nello spettro visibile.*
 
 ***-> Evento 2017*** 
 ``` r
@@ -148,20 +149,37 @@ dev.off()                                                                 # chiu
 ```
 ![evento2017_RGB](https://github.com/user-attachments/assets/aa821a02-b911-43d3-91fc-30f5d5a6df19)
 
-***Figura 8.** Rappresentazione dell'evento del 2017 nello spettro visibile*
+***Figura 8.** Rappresentazione dell'evento del 2017 nello spettro visibile.*
 
 ---------
-Successivamente, sono state visualizzate in **falsi colori**, con la banda dell'infrarosso vicino (NIR) sulla componente del rosso.
+Successivamente, sono state visualizzate in **falsi colori**, ponendo la banda dell'infrarosso vicino (NIR) sulla componente del rosso.
 In questo si differenziano: 
 - piante: riflettanza NIR molto alta 
 - roccia: riflettanza NIR bassa 
-- acqua: riflettanza NIR molto bassa 
+- acqua: riflettanza NIR molto bassa
 
+***-> Evento 2011*** 
+``` r
+im.plotRGB(cengalo2011, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2011")     # Landsat 5 
+im.plotRGB(cengalo2013, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2013")     # Landsat 7
+```
+![evento2011_NIR](https://github.com/user-attachments/assets/25deed85-0705-4122-bf54-eb5ed35ffa65)
 
+***Figura 9.** Visualizzazione dell'evento del 2011 in falsi colori.*
 
+***-> Evento 2017*** 
+``` r
+im.plotRGB(cengalo2017, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2017")     # Sentinel-2
+im.plotRGB(cengalo2018, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2018")     # Sentinel-2 
+```
+![evento2017_NIR](https://github.com/user-attachments/assets/003db99a-bb6e-44d0-929e-7f6f1eee20ea)
 
+***Figura 10.** Visualizzazione dell'evento del 2017 in falsi colori.*
 
+---------
 
+### 3.2 NDVI (Normal Difference Vegetation Index)
+rima di tutto sono stati analizzate le bande di ciascuna imm
 
 
 
