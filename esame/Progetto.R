@@ -58,25 +58,26 @@ cengalo2018 = rast("sentinel2_estate2018.tif")
 plot(cengalo2011)     #landsat 5
 plot(cengalo2013)     #landsat 7  
 
+
 # Sentinel-2
 plot(cengalo2017)
 plot(cengalo2018)
 #===================================================================================================================================================================
 #🌄 Esportazione delle immagini
 
-png("cengalo2011.png", width = 2000, height = 1500, res=300)
+png("cengalo2011.png", width = 800, height = 600, res=100)
 plot(cengalo2011)
 dev.off()
 
-png("cengalo2013.png", width = 2000, height = 1500, res=300)
+png("cengalo2013.png", width = 800, height = 600, res=100)
 plot(cengalo2013)
 dev.off()
 
-png("cengalo2017.png", width = 2000, height = 1500, res=300)
+png("cengalo2017.png", width = 800, height = 600, res=100)
 plot(cengalo2017)
 dev.off()
 
-png("cengalo2018.png", width = 2000, height = 1500, res=300)
+png("cengalo2018.png", width = 800, height = 600, res=100)
 plot(cengalo2018)
 dev.off()
 #===================================================================================================================================================================
