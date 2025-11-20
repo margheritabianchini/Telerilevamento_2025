@@ -214,9 +214,9 @@ dev.off()
 
 I risultati ottenuti sono stati rappresentati in forma di **scatterplot (grafico a dispersione)** con la funzione `pairs` e il seguente `plot` rispetto ad una linea 1:1 per valutare la variazione della copertura vegetale.
 Il rapporto tra NDVI del 2017 e NDVI del 2018 evidenzia: 
-- un aumento della vegetazione: se i punti sono posti al di sopra della linea
-- l'assenza di variazioni: se i punti sono posti sulla linea
-- una perdita della copertura vegetale: se i punti sono posti al di sotto della linea
+- un *aumento della copertura vegetale*: se i punti sono posti al di sopra della linea
+- l'*assenza di variazioni*: se i punti sono posti sulla linea
+- una *perdita della copertura vegetale*: se i punti sono posti al di sotto della linea
 
 ``` r
 # Concatenamento degli NDVI 
@@ -238,6 +238,7 @@ abline(0, 1, col="red")
 <img width="800" height="600" alt="scatterplotNDVI" src="https://github.com/user-attachments/assets/18263c31-17f5-447b-96e3-f32cc7fe1ef8" />
 
 ***Figura 13.** Scatterplot dell'NDVI del 2017 rispetto all'NDVI del 2018.*
+
 Dato che i punti risultano essere collocati al di sotto della linea 1:1 viene confermato l'impatto del fenomeno franoso che ha determinato una **perdita di vegetazione**. 
 
 ### 4.2 Variabilità spaziale 
