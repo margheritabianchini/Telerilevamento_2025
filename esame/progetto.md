@@ -78,7 +78,7 @@ getwd()
 
 Sono state richiamate, visualizzate ed esportate come file *.pgn* le immagini satellitari dei due relativi eventi:
 
--> ***Evento 2011*** 
+***-> Evento 2011*** 
 ``` r
 # Richiamo dei file
 cengalo2011 = rast("landsat5_2011.tif")    # Landsat 5
@@ -88,15 +88,28 @@ cengalo2013 = rast("landsat8_2013.tif")    # Landsat 7
 plot(cengalo2011)                          # Landsat 5
 plot(cengalo2013)                          # Landsat 7
 ```
-![cengalo_2011](
+![cengalo_2011](https://github.com/user-attachments/assets/ccbf7289-9fca-410f-a2a7-8b4d49480faa)
+***Figura 3.** Area del Pizzo Cengalo nell'estate del 2011*
 
+![cengalo_2013](https://github.com/user-attachments/assets/7c27fa40-d14a-45d3-8144-c79d61ec9cb8)
+***Figura 4.** Area del Pizzo Cengalo nell'estate del 2013*
 
-
+***-> Evento 2017*** 
 ``` r
 # Richiamo dei file (evento 2017)
 cengalo2017 = rast("sentinel2_estate2017.tif")    # Sentinel-2
-cengalo2018 = rast("sentinel2_estate2018.tif")    # Sentinel-2 
+cengalo2018 = rast("sentinel2_estate2018.tif")    # Sentinel-2
+
+# Visualizzazione 
+plot(cengalo2017)                                 # Sentinel-2
+plot(cengalo2018)                                 # Sentinel-2 
 ```
+![cengalo_2017](https://github.com/user-attachments/assets/d7e6920e-ba7a-47d2-b9fb-269235d6cfe3)
+***Figura 5.** Area del Pizzo Cengalo nell'estate del 2017 (pre-evento)*
+
+![cengalo_2018](https://github.com/user-attachments/assets/950c3939-c432-4fbc-a0d9-41baac9c3ecd)
+***Figura 6.** Area del Pizzo Cengalo nell'estate del 2018*
+
 
 
 
