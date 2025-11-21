@@ -190,8 +190,9 @@ cengalo2018
 # 3 = blue (b2)
 # 4 = NIR (b8)
 #===================================================================================================================================================================
-#🌳 Calcolo dell'NDVI (Normalized Difference Vegetation Index)
+#🌳 NDVI (Normalized Difference Vegetation Index)
 
+# Calcolo dell'NDVI (Normalized Difference Vegetation Index)
 ndvi2017=(cengalo2017[[4]] - cengalo2017[[1]]) / (cengalo2017[[4]] + cengalo2017[[1]])     # NDVI = (NIR - red) / (NIR + red)
 ndvi2018=(cengalo2018[[4]] - cengalo2018[[1]]) / (cengalo2018[[4]] + cengalo2018[[1]])     # NDVI = (NIR - red) / (NIR + red)
 #===================================================================================================================================================================
@@ -254,7 +255,7 @@ plot(ndvi[[1]], ndvi[[2]], xlab="NDVI 2017", ylab="NDVI 2018", main="Scatterplot
 abline(0, 1, col="red")
 dev.off()
 #===================================================================================================================================================================
-#⛰️ Determinazione della variabilità spaziale -> deviazione standard  
+#⛰️ VARIABILITÁ SPAZIALE -> deviazione standard  
 # La valutazione è stata svolta sull'NDVI, rispetto al NIR è meno sensibile al contesto topografico
 
 # Deviazione standard (su matrice 3x3)
@@ -277,8 +278,9 @@ plot(sd3_ndvi2017, col=mako(100), main="Deviazione standard NDVI 2017")
 plot(sd3_ndvi2018, col=mako(100), main="Deviazione standard NDVI 2018") 
 dev.off()
 #===================================================================================================================================================================
-#➖ Differenza tra NDVI 
+#⏱️ANALISI MULTITEMPORALE 
 
+# Calcolo della differenza tra NDVI 
 diff_ndvi = ndvi[[2]] -  ndvi[[1]]     # NDVI 2018 - NDVI 2017
 plot(diff_ndvi)
 #===================================================================================================================================================================
@@ -302,7 +304,8 @@ dev.off()
 plot(diff_ndvi)
 plot(ndvi_diff_crop)
 #===================================================================================================================================================================
-#🎨 Classificazione della differenza ritagliata tra gli NDVI -> determinazione della percentuale di sedimento mobilizzato
+#🎨 CLASSIFICAZIONE DELLE IMMAGINI
+# sulla differenza ritagliata tra gli NDVI -> determinazione della percentuale di sedimento mobilizzato
 
 cengaloc = im.classify(ndvi_diff_crop, num_clusters=2)
 # classe 1 = area invariata 
