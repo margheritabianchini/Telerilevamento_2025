@@ -2,7 +2,6 @@
 > ## PROGETTO DI TELERILEVAMENTO GEO-ECOLOGICO IN R - A.A. 2024/2025
 > #### Corso di Laurea Magistrale in Geologia e Territorio (LM-74)
 
-------------------
 # Caso di studio della frana di Pizzo Cengalo (Val Bondasca, Svizzera)
 
 ## Indice 
@@ -17,7 +16,7 @@
    
    4.3 Analisi multitemporale
    
-   4.4 Classificazione
+   4.4 Classificazione delle immagini 
 6. Discussione
 7. Conclusioni
 Bibliografia
@@ -25,7 +24,9 @@ Bibliografia
 ## 1. Introduzione 
 La mattina del 23 agosto 2017, nella località di Bregaglia (Val Bondasca, Svizzera), un volume di circa 3 x 10<sup>6</sup> m<sup>3</sup> si è distaccato dalla parete nord-est del Pizzo Cengalo (3368 m s.l.m.), innescando un **fenomeno franoso** che in pochi minuti ha raggiunto l'abitato di Bondo a valle.
 
-![area_studio](https://github.com/user-attachments/assets/69e65690-1888-4ff6-84e4-825944e47463)
+<img width="800" height="600" alt="area_studio" src="https://github.com/user-attachments/assets/afe76574-4e7c-4024-9a8d-d15c9b11e99c" />
+
+
 ***Figura 1.** Inquadramento geografico dell'area di studio (Pizzo Cengalo, Svizzera).*
 
 Il Pizzo Cengalo è caratterizzato da una ripida parete nord-orientale, altamente fratturata, che è stata ripetutamente oggetto di altri eventi franosi simili. Su tale versante si sviluppa il ghiacciaio che si collega alla Val Bondasca e che nel tempo si è progressivamente ritirato fino a giungere alla base della parete rocciosa. 
@@ -43,7 +44,7 @@ Nel presente progetto sono presentati i principali eventi franosi che sono stati
 - ***variabilità spaziale***
 - ***indice spettrale (NDVI)***
 - ***analisi multitemporale***
-- ***impatto del fenomeno nell'area***
+- ***impatto del fenomeno nell'area*** (classificazione delle immagini) 
 In questo modo è stato valutato l'impatto dell'evento in funzione dell'*area coinvolta*, del *volume mobilizzato* e dei *cambiamenti morfologici*, al fine di fornire delle informazioni fondamentali nel **monitoraggio** delle zone suscettibili e nella la **gestione di futuri eventi franosi** di questa tipologia (es. frana di Blatten)
 
 ## 2. Dati 
@@ -198,7 +199,7 @@ cengalo2018
 ```
 L'**NDVI (Normalized Difference Vegetation Index)** è un indice spettrale utile per valutare lo stato della vegetazione e monitorare la variazione della copertura vegetale a seguito di un evento di natura franosa.
 ``` r
-# Calcolo dell'NDVI (Normalized Difference Vegetation Index)
+# Calcolo NDVI
 ndvi2017=(cengalo2017[[4]] - cengalo2017[[1]]) / (cengalo2017[[4]] + cengalo2017[[1]])     # NDVI = (NIR - red) / (NIR + red)
 ndvi2018=(cengalo2018[[4]] - cengalo2018[[1]]) / (cengalo2018[[4]] + cengalo2018[[1]])     # NDVI = (NIR - red) / (NIR + red)
 
@@ -239,12 +240,58 @@ abline(0, 1, col="red")
 
 ***Figura 13.** Scatterplot dell'NDVI del 2017 rispetto all'NDVI del 2018.*
 
-Dato che i punti risultano essere collocati al di sotto della linea 1:1 viene confermato l'impatto del fenomeno franoso che ha determinato una **perdita di vegetazione**. 
+Dato che i punti risultano essere collocati al di sotto della linea 1:1 viene confermato l'impatto del fenomeno franoso che ha determinato una **perdita di della copertura vegetale**. 
 
 ### 4.2 Variabilità spaziale 
+Considerato il contesto topografico dell'area, la valutazione della variabilità spaziale è stata eseguita con l'NDVI. 
+È stata calcolata la **deviazione standard** pre e post-frana con una matrice 3x3, utilizzando le funzioni `focal` e `sd`. 
+
+``` r
+# Calcolo della deviazione standard 
+sd3_ndvi2017 = focal(ndvi2017, w=c(3,3), fun=sd)     # deviazione standard calcolata su una matrice 3x3 
+sd3_ndvi2018 = focal(ndvi2018, w=c(3,3), fun=sd)     # deviazione standard calcolata su una matrice 3x3 
+
+# Plot dei risultati 
+plot(sd3_ndvi2017)
+plot(sd3_ndvi2018)
+```
+![sd_ndvi](https://github.com/user-attachments/assets/7f3378eb-855a-41bb-9192-70329c6884e9)
+
+***Figura 14.** Deviazione standard calcolata dell'NDVI (matrice 3x3).*
+
+I risultati mostrano la **variabilità spaziale locale** dei due scenari. 
+I valori più alti si individuano in corrispondenza delle zone di impluvio interessate dal detrito mobilizzato, permettendo una definizione acccurata del perimetro dell'evento franoso.
+La *differenza di valori* tra l'anno 2017 e 2018 è legata all'impatto della frana che tende a ridurre la variabilità della copertura vegetale nell'area.
+
+### 4.3 Analisi multitemporale
+L'analisi è stata effettuata determinando la differenza tra i due diversi NDVI.
+``` r
+# Calcolo della differenza tra NDVI 
+diff_ndvi = ndvi[[2]] -  ndvi[[1]]     # NDVI 2018 - NDVI 2017
+plot(diff_ndvi)
+```
+
+<img width="800" height="600" alt="differenza_NDVI" src="https://github.com/user-attachments/assets/405e160e-89e9-4d18-be13-de25abe2beb7" />
+
+***Figura 15.** Risultato della differenza tra l'NDVI dell'anno 2017 e 2018.*
+
+In *Figura 15* si possono osservare le aree in cui c'è stata una perdita di vegetazione. Queste, corrispondono alle zone di impluvio interessate dalla frana, oggetto dell'erosione e della deposizione di detrito. 
+
+> [!TIP]
+> A questa informazione si può associare un DoD dell'area per mappare con precisione le zone di erosione e deposizione. 
+
+### 4.4 Classificazione delle immagini 
+La stima dell'impatto del fenomeno franoso è stata svolta sulla differenza tra gli NDVI.
+In modo da ottenere dei risultati più precisi è stato ritagliato il file. 
 
 
 
 
 
-👌
+
+
+
+
+
+> [!WARNING]
+> **(PER FRANCESCA PERCUDANI..👌)**
