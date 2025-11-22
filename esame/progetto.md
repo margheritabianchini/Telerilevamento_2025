@@ -17,8 +17,8 @@
    4.3 Analisi multitemporale
    
    4.4 Classificazione delle immagini 
-6. Discussione
-7. Conclusioni
+5. Discussione
+6. Conclusioni
 Bibliografia
 
 ## 1. Introduzione 
@@ -259,6 +259,16 @@ plot(sd3_ndvi2018)
 
 ***Figura 14.** Deviazione standard calcolata dell'NDVI (matrice 3x3).*
 
+
+> [!NOTE]
+> Nella funzione `plot` delle immagini di *Figura 15* è stata usata la scala cromatica **mako**. 
+> ``` r
+> plot(sd3_ndvi2017, col=mako(100), main="Deviazione standard NDVI 2017")
+> plot(sd3_ndvi2018, col=mako(100), main="Deviazione standard NDVI 2018")
+> ```
+
+
+
 I risultati mostrano la **variabilità spaziale locale** dei due scenari. 
 I valori più alti si individuano in corrispondenza delle zone di impluvio interessate dal detrito mobilizzato, permettendo una definizione acccurata del perimetro dell'evento franoso.
 La *differenza di valori* tra l'anno 2017 e 2018 è legata all'impatto della frana che tende a ridurre la variabilità della copertura vegetale nell'area.
@@ -281,8 +291,24 @@ In *Figura 15* si possono osservare le aree in cui c'è stata una perdita di veg
 > A questa informazione si può associare un DoD dell'area per mappare con precisione le zone di erosione e deposizione. 
 
 ### 4.4 Classificazione delle immagini 
-La stima dell'impatto del fenomeno franoso è stata svolta sulla differenza tra gli NDVI.
-In modo da ottenere dei risultati più precisi è stato ritagliato il file. 
+La stima dell'impatto del fenomeno franoso è stata svolta sulla differenza tra gli NDVI. 
+In modo da ottenere dei risultati più precisi è stata rimossa la porzione di raster coperta dalle nuvole con la funzione `crop`. 
+``` r
+# Codice utilizzato per tagliare manualmente l'immagine
+plot(diff_ndvi)
+extent_interactive = drawExtent()                                                 # crea e definisce manualmente il rettangolo da ritagliare dell'immagine 
+ndvi_diff_crop = crop(diff_ndvi, extent_interactive)                              # ritaglia lo SpatRaster secondo l'extent selezionato 
+plot(ndvi_diff_crop, main="Differenza NDVI ritagliato (anno 2018 - anno 2017)")   # visualizzazione del risultato 
+writeRaster(ndvi_diff_crop, "ndvi_diff_crop.tif", overwrite=TRUE)                 # salvataggio del file ritagliato
+```
+Dopodichè, il raster ritagliato è stato classificato secondo due classi: 
+- classe 1: area invariata 
+- classe 2: detrito mobilizzato 
+
+![classificazione] (https://github.com/user-attachments/assets/1e052d47-19f5-4365-af44-ec60c3be75b6)
+
+
+
 
 
 
