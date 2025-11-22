@@ -305,7 +305,7 @@ Dopodichè, il raster ritagliato è stato classificato secondo due classi:
 - classe 1: area invariata 
 - classe 2: detrito mobilizzato 
 
-![classificazione] (https://github.com/user-attachments/assets/1e052d47-19f5-4365-af44-ec60c3be75b6)
+![classificazione](https://github.com/user-attachments/assets/1e052d47-19f5-4365-af44-ec60c3be75b6)
 
 
 
