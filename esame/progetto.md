@@ -302,8 +302,8 @@ plot(ndvi_diff_crop, main="Differenza NDVI ritagliato (anno 2018 - anno 2017)") 
 writeRaster(ndvi_diff_crop, "ndvi_diff_crop.tif", overwrite=TRUE)                 # salvataggio del file ritagliato
 ```
 Dopodichè, il raster ritagliato è stato classificato secondo due classi: 
-- classe 1: area invariata 
-- classe 2: detrito mobilizzato 
+- ***classe 1***: area invariata 
+- ***classe 2***: detrito mobilizzato 
 
 ![classificazione](https://github.com/user-attachments/assets/1e052d47-19f5-4365-af44-ec60c3be75b6)
 
