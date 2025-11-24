@@ -323,14 +323,14 @@ dev.off()
 # Calcolo della frequenza e del totale 
 # Frequenza
 freq_cengalo = freq(cengaloc)     # calcolo della frequenza dei valori dei pixel che compongono il raster classificato dell'area studiata  
+#Verifica dei valori calcolati
+freq_cengalo 
 # Numero di celle 
 tot_cengalo = ncell(cengaloc)     # calcolo del numero totale di pixel 
 
 # Calcolo della proporzione e percentuale delle classi 
 # Proporzione
 prop_cengalo = freq_cengalo$count / tot_cengalo    # prop = (freq / tot)
-#Verifica dei valori calcolati
-freq_cengalo 
 # Percentuale
 perc_cengalo = prop_cengalo * 100     # perc = (freq / tot) * 100
 perc_cengalo 
