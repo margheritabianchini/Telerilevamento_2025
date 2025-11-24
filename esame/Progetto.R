@@ -274,8 +274,8 @@ plot(sd3_ndvi2018)
 
 png("sd3.png", width = 2000, height = 1500, res=300)
 im.multiframe (1,2)
-plot(sd3_ndvi2017, col=mako(100), main="Deviazione standard NDVI 2017")
-plot(sd3_ndvi2018, col=mako(100), main="Deviazione standard NDVI 2018") 
+plot(sd3_ndvi2017, col=magma(100), main="Deviazione standard NDVI 2017")
+plot(sd3_ndvi2018, col=magma(100), main="Deviazione standard NDVI 2018") 
 dev.off()
 #===================================================================================================================================================================
 #⏱️ANALISI MULTITEMPORALE 
