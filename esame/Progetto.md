@@ -17,8 +17,7 @@
    4.3 Analisi multitemporale
    
    4.4 Classificazione delle immagini 
-5. Discussione
-6. Conclusioni
+5. Conclusioni
 Bibliografia
 
 ## 1. Introduzione 
@@ -44,8 +43,9 @@ Nel presente progetto sono presentati i principali eventi franosi che sono stati
 - ***variabilità spaziale***
 - ***indice spettrale (NDVI)***
 - ***analisi multitemporale***
-- ***impatto del fenomeno nell'area*** (classificazione delle immagini) 
-In questo modo è stato valutato l'impatto dell'evento in funzione dell'*area coinvolta*, del *volume mobilizzato* e dei *cambiamenti morfologici*, al fine di fornire delle informazioni fondamentali nel **monitoraggio** delle zone suscettibili e nella la **gestione di futuri eventi franosi** di questa tipologia (es. frana di Blatten)
+- ***impatto del fenomeno nell'area*** (classificazione delle immagini)
+
+In questo modo è stato valutato l'impatto dell'evento in funzione dell'*area coinvolta*, del *volume mobilizzato* e dei *cambiamenti morfologici*, al fine di fornire delle informazioni fondamentali nel **monitoraggio** delle zone suscettibili e nella la **gestione di futuri eventi franosi** di questa tipologia. 
 
 ## 2. Dati 
 Le immagini satellitari sono state scaricate da [Google Earth Engine](https://earthengine.google.com/). 
@@ -371,10 +371,23 @@ p1 = ggplot(tabdetrito, aes(x=classi, y=percentuale, color=classi, fill=classi))
 |2|Detrito mobilizzato|2|
 
 
-
 <img width="600" height="600" alt="p1_tabdetrito" src="https://github.com/user-attachments/assets/d7733dca-7ac7-4608-85c1-b0ac26d1beb8" />
 
 ***Figura 17.** Istogramma delle percentuali di ciascuna classe.*
+
+----------
+## 5. Conclusioni
+L'analisi delle immagini satellitari ha mostrato che:
+
+
+---------
+## Bibliografia 
+Amann, F., Kos, A., Phillips, M., & Kenner, R. (2018). The Piz Cengalo Bergsturz and subsequent debris flows. In EGU General Assembly Conference Abstracts (p. 14700).
+
+Haeberli, W. (2013). Mountain permafrost—research frontiers and a special long-term challenge. Cold Regions Science and Technology, 96, 71-76.
+
+Mergili, M., Jaboyedoff, M., Pullarello, J., & Pudasaini, S. P. (2020). Back calculation of the 2017 Piz Cengalo–Bondo landslide cascade with r. avaflow: what we can do and what we can learn. Natural Hazards and Earth System Sciences, 20(2), 505-520.
+
 
 
 
