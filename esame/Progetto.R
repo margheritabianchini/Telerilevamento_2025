@@ -341,7 +341,7 @@ classi = c("Area invariata", "Detrito mobilizzato")     # definizione delle clas
 percentuale = c(98,2)    # colonna di valori
 tabdetrito = data.frame(classi, percentuale)
 #===================================================================================================================================================================
-#📊 Rappresentazione dei dati come istogrammi 
+#📊 Rappresentazione dei dati come istogramma
 
 p1 = ggplot(tabdetrito, aes(x=classi, y=percentuale, color=classi, fill=classi)) +  
   geom_bar(stat="identity") + 
