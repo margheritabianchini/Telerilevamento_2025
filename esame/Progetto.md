@@ -116,16 +116,13 @@ plot(cengalo2018)                                 # Sentinel-2
 
 ***Figura 6.** Area del Pizzo Cengalo nell'estate del 2018.*
 
---------
 >[!NOTE]
 > Ogni immagine presente in questo lavoro è stata esportata utilizzando la sequenza di funzioni di R:
->
->`png("immagine.png")`
->
->`plot(immagine)`
->
->`dev.off()`
------------
+> ``` r
+> png("immagine.png")
+> plot(immagine)
+> dev.off()
+> ```
 
 Le immagini sono state rappresentate nello **spettro visibile** con la funzione `im.plotRGB` che combina le tre bande in un'immagine RGB: 
 
@@ -153,7 +150,6 @@ dev.off()                                                                 # chiu
 
 ***Figura 8.** Rappresentazione dell'evento del 2017 nello spettro visibile.*
 
----------
 Successivamente, sono state visualizzate in **falsi colori**, ponendo la banda dell'infrarosso vicino (NIR) sulla componente del rosso.
 In questo si differenziano i vari elementi di un'immagine: 
 - piante: riflettanza NIR molto alta 
@@ -216,8 +212,8 @@ dev.off()
 > [!NOTE]
 > L'immagine della *Figura 11* è stata plottata con la scala cromatica **inferno**: 
 > ``` r
-plot(ndvi2017, col=inferno(100), main="Pizzo Cengalo NDVI anno 2017")
-plot(ndvi2018, col=inferno(100), main="Pizzo Cengalo NDVI anno 2018")
+> plot(ndvi2017, col=inferno(100), main="Pizzo Cengalo NDVI anno 2017")
+> plot(ndvi2018, col=inferno(100), main="Pizzo Cengalo NDVI anno 2018")
 > ```
 
 
@@ -249,7 +245,8 @@ abline(0, 1, col="red")
 ***Figura 13.** Scatterplot dell'NDVI del 2017 rispetto all'NDVI del 2018.*
 
 Dato che i punti risultano al di sotto della linea 1:1 viene confermato l'impatto del fenomeno franoso che ha determinato una **perdita di della copertura vegetale**. 
----------------------
+
+-------
 ### 4.2 Variabilità spaziale 
 Considerato il contesto topografico dell'area, la valutazione della variabilità spaziale è stata eseguita con l'NDVI. 
 È stata calcolata la **deviazione standard** pre e post-frana con una matrice 3x3, utilizzando le funzioni `focal` e `sd`. 
@@ -281,6 +278,7 @@ I risultati mostrano la **variabilità spaziale locale** dei due scenari.
 I valori più alti si individuano in corrispondenza delle zone di impluvio interessate dal detrito mobilizzato, permettendo una definizione acccurata del perimetro dell'evento franoso.
 La *differenza di valori* tra l'anno 2017 e 2018 è legata all'impatto della frana che tende a ridurre la variabilità della copertura vegetale nell'area.
 
+--------------
 ### 4.3 Analisi multitemporale
 L'analisi è stata effettuata determinando la differenza tra i due diversi NDVI.
 ``` r
@@ -296,7 +294,7 @@ plot(diff_ndvi)
 > [!NOTE]
 > L'immagine della *Figura 15* è stata plottata con la scala cromatica **inferno**: 
 > ``` r
-plot(diff_ndvi, col=inferno(100), main="Differenza NDVI (anno 2018 - anno 2017)")
+> plot(diff_ndvi, col=inferno(100), main="Differenza NDVI (anno 2018 - anno 2017)")
 > ```
 
 
@@ -305,6 +303,7 @@ In *Figura 15* si possono osservare le aree in cui c'è stata una perdita di veg
 > [!TIP]
 > A questa informazione si può associare un DoD dell'area per mappare con precisione le zone di erosione e deposizione. 
 
+-----------
 ### 4.4 Classificazione delle immagini 
 La stima dell'impatto del fenomeno franoso è stata svolta sulla differenza tra gli NDVI. 
 In modo da ottenere dei risultati più precisi è stata rimossa la porzione di raster coperta dalle nuvole con la funzione `crop`. 
@@ -326,7 +325,8 @@ Dopodichè, il raster ritagliato è stato classificato secondo due classi come r
 cengaloc = im.classify(ndvi_diff_crop, num_clusters=2) 
 ```
 
-![classificazione](https://github.com/user-attachments/assets/1e052d47-19f5-4365-af44-ec60c3be75b6)
+![classificazione](https://github.com/user-attachments/assets/6d3c2883-321c-46b3-a517-cc083a7cef3c)
+
 
 ***Figura 16.** Classificazione della differenza tra l'NDVI dell'anno 2017 e 2018.*
 
