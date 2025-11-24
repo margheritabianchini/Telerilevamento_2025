@@ -213,6 +213,14 @@ dev.off()
 
 ***Figura 11.** NDVI dell'area in esame.*
 
+> [!NOTE]
+> L'immagine della *Figura 11* è stata plottata con la scala cromatica **inferno**: 
+> ``` r
+plot(ndvi2017, col=inferno(100), main="Pizzo Cengalo NDVI anno 2017")
+plot(ndvi2018, col=inferno(100), main="Pizzo Cengalo NDVI anno 2018")
+> ```
+
+
 I risultati ottenuti sono stati rappresentati in forma di **scatterplot (grafico a dispersione)** con la funzione `pairs` e il seguente `plot` rispetto ad una linea 1:1 per valutare la variazione della copertura vegetale.
 Il rapporto tra NDVI del 2017 e NDVI del 2018 evidenzia: 
 - un *aumento della copertura vegetale*: se i punti sono posti al di sopra della linea
@@ -255,16 +263,16 @@ sd3_ndvi2018 = focal(ndvi2018, w=c(3,3), fun=sd)     # deviazione standard calco
 plot(sd3_ndvi2017)
 plot(sd3_ndvi2018)
 ```
-![sd_ndvi](https://github.com/user-attachments/assets/7f3378eb-855a-41bb-9192-70329c6884e9)
+![sd_ndvi](https://github.com/user-attachments/assets/5ce1aabb-f9aa-4baf-a9cb-d460e3627d00)
 
 ***Figura 14.** Deviazione standard calcolata dell'NDVI (matrice 3x3).*
 
 
 > [!NOTE]
-> Nella funzione `plot` delle immagini di *Figura 15* è stata usata la scala cromatica **mako**. 
+> Le immagini di *Figura 15* sono state plottate con la scala cromatica **magma**. 
 > ``` r
-> plot(sd3_ndvi2017, col=mako(100), main="Deviazione standard NDVI 2017")
-> plot(sd3_ndvi2018, col=mako(100), main="Deviazione standard NDVI 2018")
+> plot(sd3_ndvi2017, col=magma(100), main="Deviazione standard NDVI 2017")
+> plot(sd3_ndvi2018, col=magma(100), main="Deviazione standard NDVI 2018")
 > ```
 
 
@@ -284,6 +292,13 @@ plot(diff_ndvi)
 <img width="800" height="600" alt="differenza_NDVI" src="https://github.com/user-attachments/assets/405e160e-89e9-4d18-be13-de25abe2beb7" />
 
 ***Figura 15.** Risultato della differenza tra l'NDVI dell'anno 2017 e 2018.*
+
+> [!NOTE]
+> L'immagine della *Figura 15* è stata plottata con la scala cromatica **inferno**: 
+> ``` r
+plot(diff_ndvi, col=inferno(100), main="Differenza NDVI (anno 2018 - anno 2017)")
+> ```
+
 
 In *Figura 15* si possono osservare le aree in cui c'è stata una perdita di vegetazione. Queste, corrispondono alle zone di impluvio interessate dalla frana, oggetto dell'erosione e della deposizione di detrito. 
 
@@ -306,6 +321,8 @@ Dopodichè, il raster ritagliato è stato classificato secondo due classi:
 - ***classe 2***: detrito mobilizzato 
 
 ![classificazione](https://github.com/user-attachments/assets/1e052d47-19f5-4365-af44-ec60c3be75b6)
+
+***Figura 16.** Classificazione della differenza tra l'NDVI dell'anno 2017 e 2018.*
 
 
 
