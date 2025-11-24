@@ -248,8 +248,8 @@ abline(0, 1, col="red")
 
 ***Figura 13.** Scatterplot dell'NDVI del 2017 rispetto all'NDVI del 2018.*
 
-Dato che i punti risultano essere collocati al di sotto della linea 1:1 viene confermato l'impatto del fenomeno franoso che ha determinato una **perdita di della copertura vegetale**. 
-
+Dato che i punti risultano al di sotto della linea 1:1 viene confermato l'impatto del fenomeno franoso che ha determinato una **perdita di della copertura vegetale**. 
+---------------------
 ### 4.2 Variabilità spaziale 
 Considerato il contesto topografico dell'area, la valutazione della variabilità spaziale è stata eseguita con l'NDVI. 
 È stata calcolata la **deviazione standard** pre e post-frana con una matrice 3x3, utilizzando le funzioni `focal` e `sd`. 
@@ -316,25 +316,65 @@ ndvi_diff_crop = crop(diff_ndvi, extent_interactive)                            
 plot(ndvi_diff_crop, main="Differenza NDVI ritagliato (anno 2018 - anno 2017)")   # visualizzazione del risultato 
 writeRaster(ndvi_diff_crop, "ndvi_diff_crop.tif", overwrite=TRUE)                 # salvataggio del file ritagliato
 ```
-Dopodichè, il raster ritagliato è stato classificato secondo due classi: 
+
+Dopodichè, il raster ritagliato è stato classificato secondo due classi come riportato in *Figura 16*: 
 - ***classe 1***: area invariata 
 - ***classe 2***: detrito mobilizzato 
+
+``` r
+# Classificazione dell'immagine
+cengaloc = im.classify(ndvi_diff_crop, num_clusters=2) 
+```
 
 ![classificazione](https://github.com/user-attachments/assets/1e052d47-19f5-4365-af44-ec60c3be75b6)
 
 ***Figura 16.** Classificazione della differenza tra l'NDVI dell'anno 2017 e 2018.*
 
+Per ciascuna classe è stata considerata la frequenza e il numero di celle, poi è stata calcolata la percentuale. 
+
+``` r
+# Calcolo della frequenza e del numero totale di celle
+freq_cengalo = freq(cengaloc)                           # frequenza dei valori dei pixel che compongono il raster classificato 
+freq_cengalo                                            # verifica dei valori calcolati 
+tot_cengalo = ncell(cengaloc)                           # numero totale di pixel 
+
+# Calcolo della proporzione e della percentuale 
+prop_cengalo = freq_cengalo$count / tot_cengalo         # proporzione = (frequenza / totale)
+perc_cengalo = prop_cengalo * 100                       # percentuale = (frequenza / totale) * 100
+perc_cengalo                                            # verifica dei valori calcolati
+```
+I valori sono stati rappresentati in forma tabella e in forma grafica utilizzando il pacchetto `ggplot2`. 
+
+``` r
+# Rappresentazione dei dati in tabella
+classi = c("Area invariata", "Detrito mobilizzato")     # definizione delle classi 
+percentuale = c(98,2)                                   # colonna di valori
+tabdetrito = data.frame(classi, percentuale)            # definizione finale della tabella
+```
+``` r
+# Rappresentazione dei dati come istogramma 
+p1 = ggplot(tabdetrito, aes(x=classi, y=percentuale, color=classi, fill=classi)) +  
+  geom_bar(stat="identity") + 
+   labs(title = "Impatto dell'evento 23.08.2017") +
+  theme(
+    plot.title = element_text(
+      face = "bold",
+      hjust = 0.5)) +
+  ylim(c(0,100))
+```
+
+***Tabella 2.** Rappresentazione delle classi in forma di percentuale.*
+
+|ID|CLASSI|PERCENTUALE (%)|                 
+|--------|--------|---------|
+|1|Area invariata|98|
+|2|Detrito mobilizzato|2|
 
 
 
+<img width="600" height="600" alt="p1_tabdetrito" src="https://github.com/user-attachments/assets/d7733dca-7ac7-4608-85c1-b0ac26d1beb8" />
+
+***Figura 17.** Istogramma delle percentuali di ciascuna classe.*
 
 
 
-
-
-
-
-
-
-> [!WARNING]
-> **(PER FRANCESCA PERCUDANI..👌)**
