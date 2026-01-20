@@ -135,7 +135,7 @@ im.plotRGB(cengalo2011, r=1, g=2, b=3, title="Pizzo Cengalo anno 2011")    # Lan
 im.plotRGB(cengalo2013, r=3, g=2, b=1, title="Pizzo Cengalo anno 2013")    # Landsat 8 post-evento colori narturali 
 ```
 > [!TIP]
-> L'immagine acquisita del satellite Landsat 7 è stata calibrata diversamente dalle altre dato che ha una diversa combinazione delle bande. 
+> L'immagine acquisita del satellite Landsat 8 è stata calibrata diversamente dalle altre dato che ha una diversa combinazione delle bande. 
 >
 > 
 ![evento2011_RGB](https://github.com/user-attachments/assets/69fe2465-e9ff-48db-b471-0bae86626786)
