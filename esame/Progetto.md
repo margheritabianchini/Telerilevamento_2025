@@ -82,31 +82,31 @@ Sono state richiamate, visualizzate ed esportate come file `.pgn` le immagini sa
 ***-> Evento 2011*** 
 ``` r
 # Richiamo dei file
-cengalo2011 = rast("landsat5_2011.tif")    # Landsat 5
-cengalo2013 = rast("landsat8_2013.tif")    # Landsat 7
+cengalo2011 = rast("landsat5_2011.tif")    # Landsat 5 pre-evento
+cengalo2013 = rast("landsat8_2013.tif")    # Landsat 8 post-evento
 
 # Visualizzazione
-plot(cengalo2011)                          # Landsat 5
-plot(cengalo2013)                          # Landsat 7
+plot(cengalo2011)                          # Landsat 5 pre-evento
+plot(cengalo2013)                          # Landsat 8 post-evento 
 ```
 ![cengalo_2011](https://github.com/user-attachments/assets/c4cb1b61-e371-4bd9-80bf-e7c87fe9523c)
 
 
-***Figura 3.** Area del Pizzo Cengalo nell'estate del 2011.*
+***Figura 3.** Area del Pizzo Cengalo nell'estate del 2011 (pre-evento).*
 
 ![cengalo_2013](https://github.com/user-attachments/assets/31345822-815d-4d8d-bf08-a09c124480a4)
 
-***Figura 4.** Area del Pizzo Cengalo nell'estate del 2013.*
+***Figura 4.** Area del Pizzo Cengalo nell'estate del 2013 (post-evento).*
 
 ***-> Evento 2017*** 
 ``` r
 # Richiamo dei file (evento 2017)
-cengalo2017 = rast("sentinel2_estate2017.tif")    # Sentinel-2
-cengalo2018 = rast("sentinel2_estate2018.tif")    # Sentinel-2
+cengalo2017 = rast("sentinel2_estate2017.tif")    # Sentinel-2 pre-evento 
+cengalo2018 = rast("sentinel2_estate2018.tif")    # Sentinel-2 post-evento 
 
 # Visualizzazione 
-plot(cengalo2017)                                 # Sentinel-2
-plot(cengalo2018)                                 # Sentinel-2 
+plot(cengalo2017)                                 # Sentinel-2 pre-evento
+plot(cengalo2018)                                 # Sentinel-2 post-evento 
 ```
 ![cengalo_2017](https://github.com/user-attachments/assets/5a174782-2c61-4264-b5c7-aac5a565332a)
 
@@ -115,14 +115,14 @@ plot(cengalo2018)                                 # Sentinel-2
 
 ![cengalo_2018](https://github.com/user-attachments/assets/290b1393-4e01-48d0-8fb2-f55b8494cda9)
 
-***Figura 6.** Area del Pizzo Cengalo nell'estate del 2018.*
+***Figura 6.** Area del Pizzo Cengalo nell'estate del 2018 (post-evento).*
 
 >[!NOTE]
 > Ogni immagine presente in questo lavoro è stata esportata utilizzando la sequenza di funzioni di R:
 > ``` r
-> png("immagine.png")
-> plot(immagine)
-> dev.off()
+> png("immagine.png")     # dettagli output 
+> plot(immagine)          # plot immagine da esportare 
+> dev.off()               # chiusura e salvataggio 
 > ```
 
 Le immagini sono state rappresentate nello **spettro visibile** con la funzione `im.plotRGB` che combina le tre bande in un'immagine RGB: 
@@ -130,8 +130,8 @@ Le immagini sono state rappresentate nello **spettro visibile** con la funzione 
 ***-> Evento 2011*** 
 ``` r
 im.multiframe(1,2)                                                         # creazione di un multiframe 
-im.plotRGB(cengalo2011, r=1, g=2, b=3, title="Pizzo Cengalo anno 2011")    # Landsat 5
-im.plotRGB(cengalo2013, r=3, g=2, b=1, title="Pizzo Cengalo anno 2013")    # Landsat 7 
+im.plotRGB(cengalo2011, r=1, g=2, b=3, title="Pizzo Cengalo anno 2011")    # Landsat 5 pre-evento colori naturali 
+im.plotRGB(cengalo2013, r=3, g=2, b=1, title="Pizzo Cengalo anno 2013")    # Landsat 8 post-evento colori narturali 
 ```
 > [!TIP]
 > L'immagine acquisita del satellite Landsat 7 è stata calibrata diversamente dalle altre dato che ha una diversa combinazione delle bande. 
@@ -143,8 +143,8 @@ im.plotRGB(cengalo2013, r=3, g=2, b=1, title="Pizzo Cengalo anno 2013")    # Lan
 
 ***-> Evento 2017*** 
 ``` r
-im.plotRGB(cengalo2017, r=1, g=2, b=3, title="Pizzo Cengalo anno 2017")   # Sentinel-2
-im.plotRGB(cengalo2018, r=1, g=2, b=3, title="Pizzo Cengalo anno 2018")   # Sentinel-2
+im.plotRGB(cengalo2017, r=1, g=2, b=3, title="Pizzo Cengalo anno 2017")   # Sentinel-2 pre-evento colori naturali 
+im.plotRGB(cengalo2018, r=1, g=2, b=3, title="Pizzo Cengalo anno 2018")   # Sentinel-2 post-evento colori naturali 
 dev.off()                                                                 # chiusura del multiframe 
 ```
 ![evento2017_RGB](https://github.com/user-attachments/assets/aa821a02-b911-43d3-91fc-30f5d5a6df19)
@@ -159,8 +159,8 @@ In questo si differenziano i vari elementi di un'immagine:
 
 ***-> Evento 2011*** 
 ``` r
-im.plotRGB(cengalo2011, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2011")     # Landsat 5 
-im.plotRGB(cengalo2013, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2013")     # Landsat 7
+im.plotRGB(cengalo2011, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2011")     # Landsat 5 pre-evento falsi colori 
+im.plotRGB(cengalo2013, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2013")     # Landsat 8 post-evento falsi colori 
 ```
 ![evento2011_NIR](https://github.com/user-attachments/assets/25deed85-0705-4122-bf54-eb5ed35ffa65)
 
@@ -168,8 +168,8 @@ im.plotRGB(cengalo2013, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2013")     
 
 ***-> Evento 2017*** 
 ``` r
-im.plotRGB(cengalo2017, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2017")     # Sentinel-2
-im.plotRGB(cengalo2018, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2018")     # Sentinel-2 
+im.plotRGB(cengalo2017, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2017")     # Sentinel-2 pre-evento falsi colori 
+im.plotRGB(cengalo2018, r=4, g=3, b=2, title="Pizzo Cengalo NIR anno 2018")     # Sentinel-2 post-evento falsi colori 
 ```
 ![evento2017_NIR](https://github.com/user-attachments/assets/003db99a-bb6e-44d0-929e-7f6f1eee20ea)
 
@@ -201,10 +201,10 @@ ndvi2017=(cengalo2017[[4]] - cengalo2017[[1]]) / (cengalo2017[[4]] + cengalo2017
 ndvi2018=(cengalo2018[[4]] - cengalo2018[[1]]) / (cengalo2018[[4]] + cengalo2018[[1]])     # NDVI = (NIR - red) / (NIR + red)
 
 # Multiframe con gli NDVI  
-im.multiframe(1,2)
-plot(ndvi2017) 
-plot(ndvi2018)
-dev.off()
+im.multiframe(1,2)           # creazione di un multiframe
+plot(ndvi2017)               # NDVI pre-evento
+plot(ndvi2018)               # NDVI post-evento 
+dev.off()                    # chiusura del multiframe 
 ```
 ![ndvi](https://github.com/user-attachments/assets/ec430e25-d205-4231-9786-71cbcb347264)
 
@@ -213,8 +213,8 @@ dev.off()
 > [!NOTE]
 > L'immagine della *Figura 11* è stata plottata con la scala cromatica **inferno**: 
 > ``` r
-> plot(ndvi2017, col=inferno(100), main="Pizzo Cengalo NDVI anno 2017")
-> plot(ndvi2018, col=inferno(100), main="Pizzo Cengalo NDVI anno 2018")
+> plot(ndvi2017, col=inferno(100), main="Pizzo Cengalo NDVI anno 2017")     # NDVI pre-evento
+> plot(ndvi2018, col=inferno(100), main="Pizzo Cengalo NDVI anno 2018")     # NDVI post-evento 
 > ```
 
 
@@ -229,13 +229,13 @@ Il rapporto tra NDVI del 2017 e NDVI del 2018 evidenzia:
 ndvi=c(ndvi2017, ndvi2018)
 
 # Verifica del concatenamento  
-plot(ndvi[[1]])     # NDVI 2017
-plot(ndvi[[2]])     # NDVI 2018
+plot(ndvi[[1]])     # NDVI pre-evento 
+plot(ndvi[[2]])     # NDVI post-evento 
 
 # Scatterplot
-pairs(ndvi)
-plot(ndvi[[1]], ndvi[[2]], xlab="NDVI 2017", ylab="NDVI 2018", main="Scatterplot NDVI")
-abline(0, 1, col="red")
+pairs(ndvi)                                                                                # creazione matrice scatterplot 
+plot(ndvi[[1]], ndvi[[2]], xlab="NDVI 2017", ylab="NDVI 2018", main="Scatterplot NDVI")    # scatterplot NDVI pre e post-evento 
+abline(0, 1, col="red")                                                                    # inserimento linea 1:1 
 ```
 <img width="800" height="600" alt="pairsNDVI" src="https://github.com/user-attachments/assets/9b11ea2f-b58b-4da1-a30c-258efff8d7f1" />
 
@@ -254,12 +254,12 @@ Considerato il contesto topografico dell'area, la valutazione della variabilità
 
 ``` r
 # Calcolo della deviazione standard 
-sd3_ndvi2017 = focal(ndvi2017, w=c(3,3), fun=sd)     # deviazione standard calcolata su una matrice 3x3 
+sd3_ndvi2017 = focal(ndvi2017, w=c(3,3), fun=sd)     # deviazione standard calcolata su una matrice 3x3
 sd3_ndvi2018 = focal(ndvi2018, w=c(3,3), fun=sd)     # deviazione standard calcolata su una matrice 3x3 
 
 # Plot dei risultati 
-plot(sd3_ndvi2017)
-plot(sd3_ndvi2018)
+plot(sd3_ndvi2017)                                   # deviazione standard calcolata su una matrice 3x3 
+plot(sd3_ndvi2018)                                   # deviazione standard calcolata su una matrice 3x3 
 ```
 ![sd_ndvi](https://github.com/user-attachments/assets/5ce1aabb-f9aa-4baf-a9cb-d460e3627d00)
 
@@ -269,8 +269,8 @@ plot(sd3_ndvi2018)
 > [!NOTE]
 > Le immagini di *Figura 15* sono state plottate con la scala cromatica **magma**. 
 > ``` r
-> plot(sd3_ndvi2017, col=magma(100), main="Deviazione standard NDVI 2017")
-> plot(sd3_ndvi2018, col=magma(100), main="Deviazione standard NDVI 2018")
+> plot(sd3_ndvi2017, col=magma(100), main="Deviazione standard NDVI 2017")    # deviazione standard calcolata su una matrice 3x3 con palette magma
+> plot(sd3_ndvi2018, col=magma(100), main="Deviazione standard NDVI 2018")    # deviazione standard calcolata su una matrice 3x3 con palette magma 
 > ```
 
 
@@ -295,7 +295,7 @@ plot(diff_ndvi)
 > [!NOTE]
 > L'immagine della *Figura 15* è stata plottata con la scala cromatica **inferno**: 
 > ``` r
-> plot(diff_ndvi, col=inferno(100), main="Differenza NDVI (anno 2018 - anno 2017)")
+> plot(diff_ndvi, col=inferno(100), main="Differenza NDVI (anno 2018 - anno 2017)")       # NDVI 2018 - NDVI 2017
 > ```
 
 
@@ -311,10 +311,10 @@ In modo da ottenere dei risultati più precisi è stata rimossa la porzione di r
 ``` r
 # Codice utilizzato per tagliare manualmente l'immagine
 plot(diff_ndvi)
-extent_interactive = drawExtent()                                                 # crea e definisce manualmente il rettangolo da ritagliare dell'immagine 
-ndvi_diff_crop = crop(diff_ndvi, extent_interactive)                              # ritaglia lo SpatRaster secondo l'extent selezionato 
-plot(ndvi_diff_crop, main="Differenza NDVI ritagliato (anno 2018 - anno 2017)")   # visualizzazione del risultato 
-writeRaster(ndvi_diff_crop, "ndvi_diff_crop.tif", overwrite=TRUE)                 # salvataggio del file ritagliato
+extent_interactive = drawExtent()                                                     # crea e definisce manualmente il rettangolo da ritagliare dell'immagine 
+ndvi_diff_crop = crop(diff_ndvi, extent_interactive)                                  # ritaglia lo SpatRaster secondo l'extent selezionato 
+plot(ndvi_diff_crop, main="Differenza NDVI ritagliato (anno 2018 - anno 2017)")       # visualizzazione del risultato 
+writeRaster(ndvi_diff_crop, "ndvi_diff_crop.tif", overwrite=TRUE)                     # salvataggio del file ritagliato
 ```
 
 Dopodichè, il raster ritagliato è stato classificato secondo due classi come riportato in *Figura 16*: 
@@ -323,7 +323,7 @@ Dopodichè, il raster ritagliato è stato classificato secondo due classi come r
 
 ``` r
 # Classificazione dell'immagine
-cengaloc = im.classify(ndvi_diff_crop, num_clusters=2) 
+cengaloc = im.classify(ndvi_diff_crop, num_clusters=2)     # classificazione NDVI 2018 - NDVI 2017
 ```
 
 ![classificazione](https://github.com/user-attachments/assets/6d3c2883-321c-46b3-a517-cc083a7cef3c)
