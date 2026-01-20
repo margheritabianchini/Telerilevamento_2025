@@ -16,7 +16,7 @@
    
    4.3 Analisi multitemporale
    
-   4.4 Classificazione delle immagini 
+   4.4 Impatto del fenomeno 
 5. Conclusioni
    
 Bibliografia
@@ -42,10 +42,10 @@ Quest'ultimo evento franoso si è sviluppato in più fasi:
 ***Figura 2.** Rappresentazione 3D della frana del 2017 riportata nel lavoro di Mergili et al. 2020.*
 
 Nel presente progetto sono presentati i principali eventi franosi che sono stati registrati nell'area del Pizzo Cengalo. Per l'evento del 23 agosto 2017 è stata svolta un'anilisi più dettagliata sullo scenario pre e post frana, basata su:  
-- ***variabilità spaziale***
 - ***indice spettrale (NDVI)***
+- ***variabilità spaziale***
 - ***analisi multitemporale***
-- ***impatto del fenomeno nell'area*** (classificazione delle immagini)
+- ***impatto del fenomeno*** 
 
 In questo modo è stato valutato l'impatto dell'evento in funzione dell'*area coinvolta*, del *volume mobilizzato* e dei *cambiamenti morfologici*, al fine di fornire delle informazioni fondamentali nel **monitoraggio** delle zone suscettibili e nella la **gestione di futuri eventi franosi** di questa tipologia. 
 
@@ -306,7 +306,7 @@ In *Figura 15* si possono osservare le aree in cui c'è stata una perdita di veg
 > A questa informazione si può associare un DoD dell'area per mappare con precisione le zone di erosione e deposizione. 
 
 -----------
-### 4.4 Classificazione delle immagini 
+### 4.4 Impatto del fenomeno 
 La stima dell'impatto del fenomeno franoso è stata svolta sulla differenza tra gli NDVI. 
 In modo da ottenere dei risultati più precisi è stata rimossa la porzione di raster coperta dalle nuvole con la funzione `crop`. 
 ``` r
