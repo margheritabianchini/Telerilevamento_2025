@@ -18,6 +18,7 @@
    
    4.4 Classificazione delle immagini 
 5. Conclusioni
+   
 Bibliografia
 
 ## 1. Introduzione 
