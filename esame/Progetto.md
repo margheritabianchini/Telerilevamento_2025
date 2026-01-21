@@ -391,8 +391,7 @@ I dati raccolti possono essere utilizzati per:
 - supportare il **monitoraggio di futuri eventi franosi** nell'area
 - contribuire all'approfondimento delle conoscenze di tali fenomeni e alla gestione del rischio anche in altre aree potenzilamente esposte (es. frana di Blatten)
 
-![frana_abitato_Bondo](https://github.com/user-attachments/assets/0c22ac31-569a-44e3-b903-45a8d971cb90)
-
+<img width="600" height="600" alt="p1_tabdetrito" src="https://github.com/user-attachments/assets/0c22ac31-569a-44e3-b903-45a8d971cb90" />
 
 ---------
 ## Bibliografia 
