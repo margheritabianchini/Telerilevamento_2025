@@ -277,7 +277,7 @@ plot(sd3_ndvi2018)                                   # deviazione standard calco
 
 
 I risultati mostrano la **variabilità spaziale locale** dei due scenari. 
-I valori più alti si individuano in corrispondenza delle zone di impluvio interessate dal detrito mobilizzato, permettendo una definizione acccurata del perimetro dell'evento franoso.
+I valori più alti si individuano in corrispondenza delle zone di impluvio interessate dal detrito mobilizzato, permettendo una definizione acccurata del perimetro della frana.
 La *differenza di valori* tra l'anno 2017 e 2018 è legata all'impatto della frana che tende a ridurre la variabilità della copertura vegetale nell'area.
 
 --------------
@@ -379,8 +379,17 @@ p1 = ggplot(tabdetrito, aes(x=classi, y=percentuale, color=classi, fill=classi))
 
 ----------
 ## 5. Conclusioni
-L'analisi delle immagini satellitari ha mostrato che:
-
+L'analisi delle immagini satellitari pre e post-evento ha mostrato:
+- i cambiamenti morfologici nell'area studiata 
+- la perdita della copertura vegetale e la relativa estensione areale
+- il perimetro della frana
+- la stima del volume di detrito mobilizzato nell'evento
+  
+I dati raccolti possono essere utilizzati per: 
+- **mappare** il corpo di frana e individuare le zone di deposizione o erosione 
+- effettuare un **confronto con gli eventi precedenti** (anno 2011)
+- supportare il **monitoraggio di futuri eventi franosi** nell'area
+- contribuire all'approfondimento delle conoscenze di tali fenomeni e alla gestione del rischio anche in altre aree potenzilamente esposte (es. frana di Blatten)
 
 ---------
 ## Bibliografia 
