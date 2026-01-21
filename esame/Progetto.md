@@ -47,7 +47,7 @@ Nel presente progetto sono presentati i principali eventi franosi che sono stati
 - ***analisi multitemporale***
 - ***impatto del fenomeno*** 
 
-In questo modo è stato valutato l'impatto dell'evento in funzione dell'*area coinvolta*, del *volume mobilizzato* e dei *cambiamenti morfologici*, al fine di fornire delle informazioni fondamentali nel **monitoraggio** delle zone suscettibili e nella la **gestione di futuri eventi franosi** di questa tipologia. 
+In questo modo l'evento è stato valutato in funzione dell'*area coinvolta*, del *volume mobilizzato* e dei *cambiamenti morfologici*, al fine di fornire delle informazioni fondamentali nel **monitoraggio** delle zone suscettibili e nella la **gestione di futuri eventi franosi** di questa tipologia. 
 
 ## 2. Dati 
 Le immagini satellitari sono state scaricate da [Google Earth Engine](https://earthengine.google.com/). 
