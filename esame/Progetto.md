@@ -393,6 +393,8 @@ I dati raccolti possono essere utilizzati per:
 
 <img width="600" height="600" alt="p1_tabdetrito" src="https://github.com/user-attachments/assets/0c22ac31-569a-44e3-b903-45a8d971cb90" />
 
+***Figura 18.** Abitato di Bondo la mattina del 23.08.2017.*
+
 ---------
 ## Bibliografia 
 Amann, F., Kos, A., Phillips, M., & Kenner, R. (2018). The Piz Cengalo Bergsturz and subsequent debris flows. In EGU General Assembly Conference Abstracts (p. 14700).
@@ -400,7 +402,3 @@ Amann, F., Kos, A., Phillips, M., & Kenner, R. (2018). The Piz Cengalo Bergsturz
 Haeberli, W. (2013). Mountain permafrost—research frontiers and a special long-term challenge. Cold Regions Science and Technology, 96, 71-76.
 
 Mergili, M., Jaboyedoff, M., Pullarello, J., & Pudasaini, S. P. (2020). Back calculation of the 2017 Piz Cengalo–Bondo landslide cascade with r. avaflow: what we can do and what we can learn. Natural Hazards and Earth System Sciences, 20(2), 505-520.
-
-
-
-
